@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "lin-ui": "^0.9.13",
+    "tdesign-miniprogram": "^1.8.6"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/mainPage/index",
+    "pages/me/index",
+    "pages/chatting/index",
+    "pages/function/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/chatting/index",
+        "text": "AI对话",
+        "iconPath": "/Image/homeH.png",
+        "selectedIconPath": "/Image/飞机.png"
+      },
+      {
+        "pagePath": "pages/mainPage/index",
+        "text": "主页",
+        "iconPath": "/Image/坦克.png",
+        "selectedIconPath": "/Image/飞机.png"
+      },
+      {
+        "pagePath": "pages/me/index",
+        "text": "我的",
+        "iconPath": "/Image/拼图.png",
+        "selectedIconPath": "/Image/飞机.png"
+      }
+    ]
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "darkmode": true 
+}
