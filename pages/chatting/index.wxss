@@ -39,3 +39,15 @@
   margin-left: 10px; /* 头像和聊天内容之间的间距 */
   width: 100%; /* 限制聊天框宽度 */
 }
+.input-example {
+  --td-input-vertical-padding: 24rpx;
+  background-color: var(--bg-color-demo);
+  padding: 32rpx 32rpx 16rpx;
+}
+
+.input-example__label {
+  color: var(--td-text-color-primary);
+  font-size: 24rpx;
+  line-height: 40rpx;
+  margin: 0 8rpx 16rpx;
+}

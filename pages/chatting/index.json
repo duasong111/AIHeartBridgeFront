@@ -1,6 +1,7 @@
 {
   "navigationBarBackgroundColor": "#ccccd6",
   "navigationBarTitleText": "AI聊天",
+  "component": true,
   "usingComponents": {
     "l-button":"../../miniprogram_npm/lin-ui/button/index",
     "l-index-list":"../../miniprogram_npm/lin-ui/index-list/index",
@@ -10,7 +11,8 @@
     "l-popup": "/miniprogram_npm/lin-ui/popup/index",
     
     
-    "t-button": "/miniprogram_npm/tdesign-miniprogram/button/button"
+    "t-button": "/miniprogram_npm/tdesign-miniprogram/button/button",
+    "t-input": "/miniprogram_npm/tdesign-miniprogram/input/input"
    
   }
 }

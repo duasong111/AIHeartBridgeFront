@@ -2,15 +2,15 @@
 
   <!-- 上方是显示AI的对话显示 -->
   <view class="chat-container">
-  <view class="AiChatImage">
-    <image class="avatar" src="/Image/sun.png"></image>
+    <view class="AiChatImage">
+      <image class="avatar" src="/Image/sun.png"></image>
+    </view>
+    <view class="AiChating">
+      <l-card bindtap="getDetail" data-right-index="{{index}}" type="primary" plaintext="{{true}}" title="">
+        <view>有什么可以帮助你的吗？此处显示用户输出的内容</view>
+      </l-card>
+    </view>
   </view>
-  <view class="AiChating">
-    <l-card bindtap="getDetail" data-right-index="{{index}}" type="primary" plaintext="{{true}}" title="">
-      <view>有什么可以帮助你的吗？此处显示用户输出的内容</view>
-    </l-card>
-  </view>
-</view>
 
 
 
@@ -30,9 +30,28 @@
 
   <input bindinput="userMessageInputAction"  class="input" name="userMessage" placeholder="輸入:" auto-focus="true" />
 </l-popup> -->
+<l-card type="primary" plaintext="{{true}}" title="🍍功能框">
+  很简单，豆瓣现在这样就给大家指了一条明路:以后凡是这种国产的风口浪尖的的片子，会涉及到各方背后利益关系的片子...</l-card>
+<l-card type="avatar" l-class="card"  title="🍍功能框" >
+  <!-- 此处为content -->
+  <view class="avter-content">
+    很简单，豆瓣现在这样就给大家指了一条明路:以后凡是这种国产的风口浪尖的的片子，会涉及到各方背后利益关系的片子...
+  
+  
+    <l-input label="专业" required="{{true}}" type="text" placeholder="请输入专业" clear="{{true}}"  bind:lininput="inputRegister" data-input-type="major_name" />
+  </view>
+
+
+
+
+
+
+</l-card>
+
 
 <view class="button-example">
   <t-button theme="primary" size="large">填充按钮</t-button>
   <t-button theme="light" size="large">填充按钮</t-button>
   <t-button size="large">填充按钮</t-button>
 </view>
+

@@ -8,6 +8,7 @@ Page({
     //用户所发信息
     userMessage:[],
     showPoP:true,  //用戶在底部進行輸入
+    style: 'border: 2rpx solid var(--td-component-border);border-radius: 12rpx;',
 
   },
 
