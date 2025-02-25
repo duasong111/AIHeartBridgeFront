@@ -36,7 +36,7 @@
   <!-- 此处为content -->
   <view class="avter-content">
     很简单，豆瓣现在这样就给大家指了一条明路:以后凡是这种国产的风口浪尖的的片子，会涉及到各方背后利益关系的片子...
-  
+  <view>hhhh</view>
   
     <l-input label="专业" required="{{true}}" type="text" placeholder="请输入专业" clear="{{true}}"  bind:lininput="inputRegister" data-input-type="major_name" />
   </view>
