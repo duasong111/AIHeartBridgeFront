@@ -13,6 +13,8 @@
   /* background-color: #5d5cde; */
 
 }
+
+
 .chat-container {
   display: flex;
   align-items: center;
@@ -51,3 +53,22 @@
   line-height: 40rpx;
   margin: 0 8rpx 16rpx;
 }
+/* ----------下面是对用户展示的效果---------- */
+
+/* 对用户输入的控制，可以允许进行多行输入 */
+.multi-input {
+  width: 100%;
+  border-radius: 10rpx; /* 添加圆角，调整弧度 */
+  min-height: 100rpx; /* 设置最小高度 */
+  border: 2rpx solid rgb(238, 232, 232); /* 添加边框，便于查看 */
+  padding: 10rpx; /* 内边距 */
+  font-size: 32rpx; /* 字体大小 */
+}
+.button-container {
+  display: flex;
+  justify-content: flex-end; /* 按钮靠右对齐 */
+  gap: 20rpx; /* 按钮之间的间距 */
+  margin-right: 10%; /* 距离右边界 10% */
+  margin-top: 20rpx; /* 与上方的 textarea 的间距 */
+}
+
