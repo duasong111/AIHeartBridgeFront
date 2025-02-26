@@ -1,5 +1,5 @@
 {
-  "navigationBarBackgroundColor": "#ccccd6",
+  "navigationBarBackgroundColor": "#ffffff",
   "navigationBarTitleText": "AI聊天",
   "component": true,
   "usingComponents": {

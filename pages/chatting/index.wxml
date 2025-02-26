@@ -1,42 +1,24 @@
 <view class="container">
-
-  <!-- 上方是显示AI的对话显示 -->
-  <view class="chat-container">
-    <view class="AiChatImage">
-      <image class="avatar" src="/Image/sun.png"></image>
-    </view>
-    <view class="AiChating">
-      <l-card bindtap="getDetail" data-right-index="{{index}}" type="primary" plaintext="{{true}}" title="">
-        <view>{{userMessage}}</view>
-      </l-card>
-    </view>
+  <!-- 欢迎消息 -->
+  <view class="welcome">
+    <view>{{showTime}}，{{userName}}</view>
+    <view>想聊点什么？</view>
   </view>
-
-
-
-
-
-  <!-- 这个是显示用户输出的内容 -->
-
-</view>
-<!-- <l-popup show="{{showPoP}}" content-align="bottom">
-
-  <input bindinput="userMessageInputAction"  class="input" name="userMessage" placeholder="輸入:" auto-focus="true" />
-</l-popup> -->
-<l-card type="primary" plaintext="{{true}}" title="🌞对话框">
-
-  <view class="contentUser">
-    <l-card bindtap="getDetail" data-right-index="{{index}}" type="primary" plaintext="{{true}}" title="">
-
-      <textarea class="multi-input" placeholder="请输入内容" auto-height bindinput="onInput"></textarea>
-
-      <view class="button-container">
-        <t-button theme="primary" size="small" variant="outline" shape="round" bindtap="selectModel">版本切换</t-button>
-        <t-button theme="danger" size="small" variant="outline" shape="round"  bindtap="sendMessage">发送对话</t-button>
-        <!-- <t-button theme="danger" variant="outline" size="small" icon="search" shape="circle" aria-label="搜索"></t-button> -->
-      </view>
+<!-- 对话框的内容 -->
+  <view class="chat-container" wx:for="{{chatHistory}}" wx:key="index" wx:for-item="message" data-sender="{{message.sender}}">
+    <l-card type="primary" plaintext="{{true}}" title="">
+      <view>{{message.content}}</view>
     </l-card>
   </view>
-</l-card>
-<view>
+  <l-card type="primary" plaintext="{{true}}" title="🌞当前对话版本:{{selectedModel}}">
+    <view class="contentUser">
+      <l-card type="primary" plaintext="{{true}}" title="">
+        <textarea class="multi-input" placeholder="请输入内容" auto-height value="{{inputValue}}" bindinput="onInput"></textarea>
+        <view class="button-container">
+          <t-button theme="primary" size="small" variant="outline" shape="round" bindtap="selectModel">版本切换</t-button>
+          <t-button theme="danger" size="small" variant="outline" shape="round" bindtap="sendMessage">发送对话</t-button>
+        </view>
+      </l-card>
+    </view>
+  </l-card>
 </view>
