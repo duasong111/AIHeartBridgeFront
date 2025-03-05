@@ -3,7 +3,8 @@
     "pages/mainPage/index",
     "pages/me/index",
     "pages/chatting/index",
-    "pages/function/index"
+    "pages/function/index",
+    "pages/register/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

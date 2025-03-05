@@ -1,5 +1,5 @@
 page {
-    background-color: #f5f5f5;
+    background-color: #ffff;
   }
   .container {
     /* 其实这里写的是不正规的，不能这样去进行定死的 */

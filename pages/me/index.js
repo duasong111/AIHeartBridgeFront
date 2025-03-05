@@ -5,7 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-    //   avatarUrl: '/Image/坦克.png',
+      avatarUrl: '/Image/cool.png',
       username: 'John Doe'
     },
     /**
@@ -14,14 +14,14 @@ Page({
     onLoad(options) {
   
     },
-    //跳转到设置页面操作
-    setting:function(){
+    //跳转个人信息页面
+    PersonalInform:function(){
       wx.navigateTo({
         // url: '/pages/setting/index',
       })
   
     },
-    learnMore:function(){
+    TestHistory:function(){
       wx.navigateTo({
         // url: '/pages/learnMore/index',
       })

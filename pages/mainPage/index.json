@@ -1,5 +1,5 @@
 {
-    "navigationBarBackgroundColor": "#cdd1d3",
+  "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "主页",
     "usingComponents": {
       "l-grid":"../../miniprogram_npm/lin-ui/grid/index",

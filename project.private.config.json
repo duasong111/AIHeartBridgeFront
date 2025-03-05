@@ -9,8 +9,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "对话页面",
-          "pathName": "pages/chatting/index",
+          "name": "注册页面显示",
+          "pathName": "pages/register/index",
           "query": "",
           "launchMode": "default",
           "scene": null

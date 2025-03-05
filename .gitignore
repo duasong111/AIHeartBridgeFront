@@ -15,9 +15,8 @@ node_modules/
 
 
 # 避免提交的文件夹
-miniprogram_npm
-node_modules
-.vscode
+miniprogram_npm/
+.vscode/
 
 # 避免提交的文件
 yarn.lock
