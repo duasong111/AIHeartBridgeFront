@@ -1,7 +1,7 @@
 <view class="t-login">
     <image class="img-b" src="/Image/bj2.png"></image>
-    <view class="t-b">{{ title }}</view>
-    <view class="t-b2">˗ˋˏ♡ˎˊ˗点击登录，即可畅享比赛资源</view>
+    <view class="t-b">{{ data.GoodSentences[randomNumber].mainTitle }}</view>
+    <view class="t-b2">˗ˋˏ♡ˎˊ˗{{data.GoodSentences[randomNumber].subTitle}}</view>
     <form class="cl">
         <view class="t-a">
             <image src="/Image/loginUser.png"></image>

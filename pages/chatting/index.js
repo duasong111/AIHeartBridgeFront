@@ -1,3 +1,4 @@
+
 // pages/chatting/index.js
 Page({
   data: {

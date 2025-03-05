@@ -1,8 +1,7 @@
 // pages/login/login.js
 Page({
   data: {
-    title: '让比赛咨询更加方便🎉',
-    second: 60,
+    randomNumber: 1,
     userAccound: '',
     userPassword: '',
     userInfo: "",
@@ -18,10 +17,55 @@ Page({
     account: '',   // 账户对应的数据字段
     password:'',
     confirm_password:'',
-
-
+    data: {
+      GoodSentences: [
+        {
+          mainTitle: "每一天都是新的开始，阳光总会在云层后等着你",
+          subTitle: "提醒人们无论当下多难，都有希望在前面"
+        },
+        {
+          mainTitle: "你的内心像花园一样，浇灌一点爱和耐心，它就会开出美丽的花",
+          subTitle: "鼓励自我关怀和成长"
+        },
+        {
+          mainTitle: "即使步伐很小，也是在走向光亮的地方",
+          subTitle: "肯定努力的价值，哪怕进展缓慢"
+        },
+        {
+          mainTitle: "你不必完美，只要是你自己，就已经足够闪耀",
+          subTitle: "传递接纳自我的温暖"
+        },
+        {
+          mainTitle: "阴天会过去，阳光会洒满你的肩膀",
+          subTitle: "给予坚持的信心"
+        },
+        {
+          mainTitle: "深呼吸，感受这一刻的宁静，你比你想象的更坚强",
+          subTitle: "简单而治愈，提醒人们关注当下"
+        },
+        {
+          mainTitle: "世界很大，总有一束光是为你而亮的",
+          subTitle: "让人感到被看见和珍视"
+        },
+        {
+          mainTitle: "像向日葵一样，永远追逐属于你的太阳",
+          subTitle: "用自然意象激发活力和希望"
+        }
+      ]
+    }
   },
-  
+
+  onLoad(options) {
+    this.randomNumber();
+  },
+  //生成随机数，能够去将首页面试变成随机更新的
+  randomNumber:function(){
+    const number = Math.floor(Math.random() * 10);
+    this.setData({
+     randomNumber: number
+    });
+ },
+  //用户登录函数--能够去向后端发送请求
   login: function() {
     var that = this;
     var userName = that.data.userAccound;
@@ -51,7 +95,7 @@ Page({
             showTitile:"用户登录失败！",
             showBody:"用户名或密码错误,请重新登录"
           })
-          console.log("查看返回的结果", res.data);
+          
         }
       },
       fail: function(error) {
@@ -60,7 +104,6 @@ Page({
     });
   },
   registerButton:function(e){
-
     var that = this;
     that.setData({
       showRegister:true
