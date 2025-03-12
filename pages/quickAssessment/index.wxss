@@ -26,7 +26,7 @@
 }
 
 
-/* 对按钮的设置 */
+/* 对圆形按钮的设置 */
 .selectButton{
   display: flex;
   justify-content: space-between;
@@ -34,4 +34,18 @@
   /* background-color: aqua; */
   gap: 20rpx;
   padding: 20rpx;
+}
+
+/* 对底部提交按钮的布局 */
+.btn-container{
+  /* margin-left: 100rpx; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40rpxrpx;
+  margin-left: 40rpx;
+  padding: 20rpx;
+}
+l-button{
+  width: calc(100% - 60rpx);
 }

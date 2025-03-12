@@ -1,27 +1,53 @@
-
 <!-- 下面是用户进行答题的卡片 -->
 
-<view class="container" wx:for="{{diaglogList}}" wx:key="id">
-<div class="dialogContent">
-  <l-card type="primary" plaintext="{{true}}" >
-    <l-card type="primary" plaintext="{{true}}" >
-      <view class="innerContent">
-    {{item.content}}
-    </view>
+<view class="container" wx:for="{{dialogList}}" wx:key="id" wx:for-index="idx">
+  <div class="dialogContent">
+    <l-card type="primary" plaintext="{{true}}">
+      <l-card type="primary" plaintext="{{true}}">
+        <view class="innerContent">
+          {{item.content}}
+        </view>
+      </l-card>
     </l-card>
-   </l-card>
-</div>
+  </div>
+  <!-- 对用户选择的按钮设置 -->
+  <view class="selectButton">
+    <div class="rightFont">Disagree</div>
+    <t-button theme="primary" icon="{{item.score === 1 ? 'check' : ''}}" variant="{{item.score === 1 ? '' : 'dashed'}}" size="large" shape="circle" bindtap="onButtonTap" data-question-index="{{idx}}" data-index="1">{{item.score === 1 ? '' : '1'}}</t-button>
+    <t-button theme="primary" icon="{{item.score === 2 ? 'check' : ''}}" variant="{{item.score === 2 ? '' : 'dashed'}}" size="medium" shape="circle" bindtap="onButtonTap" data-question-index="{{idx}}" data-index="2">{{item.score === 2 ? '' : '2'}}</t-button>
+    <t-button theme="primary" icon="{{item.score === 3 ? 'check' : ''}}" variant="{{item.score === 3 ? '' : 'dashed'}}" size="small" shape="circle" bindtap="onButtonTap" data-question-index="{{idx}}" data-index="3">{{item.score === 3 ? '' : '3'}}</t-button>
+    <t-button theme="primary" icon="{{item.score === 4 ? 'check' : ''}}" variant="{{item.score === 4 ? '' : 'dashed'}}" size="medium" shape="circle" bindtap="onButtonTap" data-question-index="{{idx}}" data-index="4">{{item.score === 4 ? '' : '4'}}</t-button>
+    <t-button theme="primary" icon="{{item.score === 5 ? 'check' : ''}}" variant="{{item.score === 5 ? '' : 'dashed'}}" size="large" shape="circle" bindtap="onButtonTap" data-question-index="{{idx}}" data-index="5">{{item.score === 5 ? '' : '5'}}</t-button>
+    <div class="leftFont"> Agree</div>
+  </view>
 
-<!-- 对用户选择的按钮设置 -->
-<view class="selectButton">
-  <div class="leftFont"> Agree</div>
-  <t-button theme="primary" icon="{{selected === 1 ? 'check' : ''}}" variant="{{selected === 1 ? '' : 'dashed'}}" size="large" shape="circle"  bindtap="onButtonTap" data-index="1">{{selected === 1 ? '' : '1'}}</t-button>
-  <t-button theme="primary" icon="{{selected === 2 ? 'check' : ''}}" variant="{{selected === 2 ? '' : 'dashed'}}" size="medium" shape="circle" bindtap="onButtonTap" data-index="2">{{selected === 2 ? '' : '2'}}</t-button>
-  <t-button theme="primary" icon="{{selected === 3 ? 'check' : ''}}" variant="{{selected === 3 ? '' : 'dashed'}}" size="small" shape="circle"  bindtap="onButtonTap" data-index="3">{{selected === 3 ? '' : '3'}}</t-button>
-  <t-button theme="primary" icon="{{selected === 4 ? 'check' : ''}}" variant="{{selected === 4 ? '' : 'dashed'}}" size="medium" shape="circle" bindtap="onButtonTap" data-index="4">{{selected === 4 ? '' : '4'}}</t-button>
-  <t-button theme="primary" icon="{{selected === 5 ? 'check' : ''}}" variant="{{selected === 5 ? '' : 'dashed'}}" size="large" shape="circle"  bindtap="onButtonTap" data-index="5">{{selected === 5 ? '' : '5'}}</t-button>
-  
-  <div class="rightFont">Disagree</div>
+
 
 </view>
-</view>
+<l-card type="primary" plaintext="{{true}}">
+  <view class="btn-container">
+    <l-button type="success" shape="semicircle" bindtap="submitAnswers">提交</l-button>
+    <l-button type="default" shape="semicircle" bindtap="submitReset">重置</l-button>
+  </view>
+</l-card>
+
+
+<!-- <l-dialog 
+  show="{{dialogShow}}" 
+  type="confirm" 
+  title="您的最终得分：{{recordUserScore[recordUserScore.length - 1]}}" 
+  content="下边就是我去进行建议的一些话了 " 
+  bind:close="closeDialog"
+/> -->
+
+<l-dialog 
+  show="{{dialogShow}}"
+  type="confirm"  
+  title="您的最终得分：{{recordUserScore[recordUserScore.length - 1]}}" 
+  content="下边就是我去进行建议的一些话了"
+  confirm-text="确定"
+  bind:linconfirm="confirmFunction"
+  confirm-color="#f60"
+  cancel-text="重试"
+  bind:lincancel="submitReset"
+  cancel-color="#999" />
