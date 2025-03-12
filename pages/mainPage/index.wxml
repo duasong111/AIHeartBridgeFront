@@ -11,21 +11,21 @@
   </view>
   <!-- 展示的则是下边俩不对称的框 -->
   <view class="box-bottom">
-    <view bindtap="personnelDetails" class="left-box">
-      <!-- 在这个里边去进行连接至人员简介 -->
+    <view bindtap="quickAssess" class="left-box">
+      <!-- 在这个里边去来进行显示快速测评 -->
       <view class="showFont">
         <icon class="iconfont icon-monkey" />
         <view class="fontbeauty">快速测评</view>
       </view>
     </view>
-    <view bindtap="awardPresentation" class="right-box">
+    <view bindtap="dailyRecom" class="right-box">
       <view class="showFont">
         <icon class="iconfont icon-fengche" />
         <view class="fontbeauty">每日推荐</view>
       </view>
     </view>
   </view>
-  <!-- 展示工作室的进行新闻 -->
+  <!-- 展示壹心理的每日新闻推荐的进行新闻 -->
   <view class="showNews">
     <view class='topTabSwiper'>
       <view class='tab  {{currentData == 0 ? "tabBorer" : ""}}' data-current="0" bindtap='checkCurrent'>功能1</view>

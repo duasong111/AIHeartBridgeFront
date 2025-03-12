@@ -103,54 +103,55 @@ Page({
       }
     },
   
-    // 人员详情的页面的跳转
-    personnelDetails: function () {
+    // 展示快速测评的答题模式
+    quickAssess: function () {
       wx.navigateTo({
-        url: '/pages/teamMembers/index'
+        url: '/pages/quickAssessment/index'
       })
     },
   
-    //展示获奖展示页面
-    awardPresentation: function () {
+    //展示每日推荐的页面进行跳转
+    dailyRecom: function () {
+      console.log("展示进入信息")
     
       wx.navigateTo({
-        url: '/pages/awardPresentation/index',
+        url: '/pages/dailyRecom/index',
       })
     },
   
-    //获取比赛通知
+    //获取
     getGameNotices: function () {
-      var that = this
-      wx.request({
-        url: 'http://127.0.0.1:8000/conf/get-notice/',
-        method: 'GET',
-        data: {},
-        header: {
-          'Accept': 'application/json'
-        },
-        success: function (res) {
-          that.setData({
-            getCompetitionNotifications: res.data.data
-          })
-        }
-      })
+      // var that = this
+      // wx.request({
+      //   url: 'http://127.0.0.1:8000/conf/get-notice/',
+      //   method: 'GET',
+      //   data: {},
+      //   header: {
+      //     'Accept': 'application/json'
+      //   },
+      //   success: function (res) {
+      //     that.setData({
+      //       getCompetitionNotifications: res.data.data
+      //     })
+      //   }
+      // })
     },
-    //获取首创新闻
+    // 获取首创新闻
     getNews:function(){
-      var that = this
-      wx.request({
-        url: 'http://127.0.0.1:8000/conf/get-news/',
-        method: 'GET',
-        data: {},
-        header: {
-          'Accept': 'application/json'
-        },
-        success: function (res) {
-          that.setData({
-            getNews: res.data.data
-          })
-        }
-      })
+      // var that = this
+      // wx.request({
+      //   url: 'http://127.0.0.1:8000/conf/get-news/',
+      //   method: 'GET',
+      //   data: {},
+      //   header: {
+      //     'Accept': 'application/json'
+      //   },
+      //   success: function (res) {
+      //     that.setData({
+      //       getNews: res.data.data
+      //     })
+      //   }
+      // })
     },
   
   

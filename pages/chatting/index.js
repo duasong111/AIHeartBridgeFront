@@ -70,7 +70,7 @@ Page({
     }, 1000);
 
     // 真实接口示例（取消注释使用）
-    /*
+    
     wx.request({
       url: 'https://your-api-endpoint.com/grok',
       method: 'POST',
@@ -102,7 +102,7 @@ Page({
         wx.hideLoading();
       }
     });
-    */
+   
   },
 //切换到这个页面就能触发的函数
   onLoad(options) {

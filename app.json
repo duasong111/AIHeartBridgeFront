@@ -4,7 +4,9 @@
     "pages/me/index",
     "pages/chatting/index",
     "pages/function/index",
-    "pages/register/index"
+    "pages/register/index",
+    "pages/quickAssessment/index",
+    "pages/dailyRecom/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
