@@ -9,8 +9,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "快速测评页面",
-          "pathName": "pages/quickAssessment/index",
+          "name": "每日推荐",
+          "pathName": "pages/dailyRecom/index",
           "query": "",
           "launchMode": "default",
           "scene": null

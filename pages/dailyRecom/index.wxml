@@ -1,2 +1,41 @@
-<!--pages/dailyRecom/index.wxml-->
-<text>pages/dailyRecom/index.wxml</text>
+<view class="searchbar">
+  <l-search-bar placeholder="搜索项目名" shape="circle" show-cancel="{{true}}" />
+</view>
+<view class="container">
+  <!-- 左侧栏 -->
+  <view class="nav_left">
+    <block wx:for="{{navLeftItems}}">
+      <view class="nav_left_items {{curNav == item.id ? 'active' : ''}}" bindtap="switchRightTab" data-left-index="{{index}}" data-id="{{item.id}}">{{item.title}}</view>
+    </block>
+  </view>
+  <!-- 右侧栏 -->
+  <view class="nav_right">
+    <view wx:if="{{navRightItems[curIndex] && navRightItems[curIndex][0]}}">
+      <view class="crad" wx:for="{{navRightItems[curIndex]}}" wx:for-item="item" wx:for-index="rightIndex">
+        <l-card bindtap="getDetail" data-right-index="{{rightIndex}}" type="primary" plaintext="{{true}}" title="">
+          <view class="projectTitle"> 项目名称: {{item.Name}}</view>
+          <view class="content">
+            {{item.Description}} {{item.Time}}
+          </view>
+        </l-card>
+      </view>
+    </view>
+    <view wx:else>暂无项目，展示一个空的图片，然后说明：该领域可能还没有项目供对外展示哦</view>
+  </view>
+</view>
+<l-popup show="{{showPoP}}" content-align="bottom">
+  <view class="displayFloatingWindow">
+    <view class="projecName">
+      <icon class="iconfont icon-chuangan"></icon>项目: {{selectedItem.Name}}
+    </view>
+    <view class="projecLeader">
+      <icon class="iconfont icon-datou"></icon>
+      <view class="leaderName">
+        编辑: {{selectedItem.Edit}}
+      </view>
+    </view>
+    <view class="describe">
+      {{selectedItem.Description}}
+    </view>
+  </view>
+</l-popup>

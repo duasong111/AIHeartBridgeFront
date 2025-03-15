@@ -1,66 +1,53 @@
-// pages/dailyRecom/index.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    navLeftItems: [],
+    navRightItems: [],
+    curNav: 1,
+    curIndex: 0,
+    showPoP: false,
+    selectedItem: null,
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
+  onLoad: function() {
+    this.getAcquiringProfessionalFields();
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  getAcquiringProfessionalFields: function() {
+    var that = this;
+    wx.request({
+      url: 'http://127.0.0.1:8000/info/info-newslistdetail/',
+      method: 'GET',
+      data: {},
+      header: {
+        'Accept': 'application/json'
+      },
+      success: function(res) {
+        const processedNavLeftItems = res.data.data.navLeftItems.map(item => ({
+          id: item.id,
+          title: item.data.title
+        }));
+        that.setData({
+          navLeftItems: processedNavLeftItems,
+          navRightItems: res.data.data.navRightItems
+        });
+      },
+      fail: function(err) {
+        console.error("请求失败", err);
+      }
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
+  switchRightTab: function(e) {
+    let id = e.currentTarget.dataset.id; // 使用 currentTarget 更准确
+    let index = parseInt(e.currentTarget.dataset.leftIndex);
+    this.setData({
+      curNav: id,
+      curIndex: index
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+  getDetail: function(event) {
+    const { rightIndex } = event.currentTarget.dataset;
+    const selectedItem = this.data.navRightItems[this.data.curIndex][rightIndex];
+    this.setData({
+      selectedItem,
+      showPoP: true,
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
-})
+});
