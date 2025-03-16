@@ -9,8 +9,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "每日推荐",
-          "pathName": "pages/dailyRecom/index",
+          "name": "聊天区域",
+          "pathName": "pages/chatting/index",
           "query": "",
           "launchMode": "default",
           "scene": null

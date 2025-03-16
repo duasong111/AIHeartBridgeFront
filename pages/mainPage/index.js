@@ -121,37 +121,38 @@ Page({
   
     //获取
     getGameNotices: function () {
-      // var that = this
-      // wx.request({
-      //   url: 'http://127.0.0.1:8000/conf/get-notice/',
-      //   method: 'GET',
-      //   data: {},
-      //   header: {
-      //     'Accept': 'application/json'
-      //   },
-      //   success: function (res) {
-      //     that.setData({
-      //       getCompetitionNotifications: res.data.data
-      //     })
-      //   }
-      // })
+      var that = this
+      wx.request({
+        url: 'http://127.0.0.1:8000/newentrance/art-notice/',
+        method: 'GET',
+        data: {},
+        header: {
+          'Accept': 'application/json'
+        },
+        success: function (res) {
+          console.log("打印请求的数据",res.data);
+          that.setData({
+            getCompetitionNotifications: res.data.data
+          })
+        }
+      })
     },
     // 获取首创新闻
     getNews:function(){
-      // var that = this
-      // wx.request({
-      //   url: 'http://127.0.0.1:8000/conf/get-news/',
-      //   method: 'GET',
-      //   data: {},
-      //   header: {
-      //     'Accept': 'application/json'
-      //   },
-      //   success: function (res) {
-      //     that.setData({
-      //       getNews: res.data.data
-      //     })
-      //   }
-      // })
+      var that = this
+      wx.request({
+        url: 'http://127.0.0.1:8000/newentrance/art-news/',
+        method: 'GET',
+        data: {},
+        header: {
+          'Accept': 'application/json'
+        },
+        success: function (res) {
+          that.setData({
+            getNews: res.data.data
+          })
+        }
+      })
     },
   
   
