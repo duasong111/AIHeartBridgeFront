@@ -55,24 +55,6 @@ Page({
         });
         this.callAIModel(content);
         console.log('用户消息已添加:', updatedChatHistory);
-
-        // wx.request({
-        //     url: 'http://127.0.0.1:8000/chatmessage/ai-chat/', // 注意：实际可能需要后端代理
-        //     method: 'POST',
-        //     data: {"input_text":content},
-        //     header: { 'Content-Type': 'application/json' },
-        //     success: (res) => {
-        //       console.log("显示AI之间的回传对话",res.data);
-        //     },
-        //     fail: (err) => {
-        //       console.error('星火AI调用失败', err);
-        //       const aiMessage = {
-        //         sender: 'AI',
-        //         content: '抱歉，回复失败，请稍后再试',
-        //         timestamp: new Date().toLocaleTimeString()
-        //       };
-        //     }
-        // })
     },
     //去与AI大模型进行沟通对话
     callAIModel(userInput) {
@@ -93,7 +75,7 @@ Page({
                 console.log("显示AI之间的回传对话", res.data);
                 const aiMessage = {
                     sender: 'AI',
-                    content: res.data || 'AI回复出错，请重试',
+                    content: res.data.response || 'AI回复出错，请重试',
                     timestamp: new Date().toLocaleTimeString()
                 };
                 this.setData({
