@@ -54,7 +54,11 @@ Page({
             inputValue: ''
         });
         this.callAIModel(content);
+
         console.log('用户消息已添加:', updatedChatHistory);
+        if(updatedChatHistory.length > 10){
+            console.log("此时给后天发送消息，去分析用户的心理状态详情");
+        }
     },
     //去与AI大模型进行沟通对话
     callAIModel(userInput) {
@@ -72,7 +76,6 @@ Page({
                 'Content-Type': 'application/json'
             },
             success: (res) => {
-                console.log("显示AI之间的回传对话", res.data);
                 const aiMessage = {
                     sender: 'AI',
                     content: res.data.response || 'AI回复出错，请重试',
