@@ -10,7 +10,6 @@ Page({
         style: 'border: 2rpx solid var(--td-component-border);border-radius: 12rpx;',
         dataAnalysis:''  //存储用户聊天后所给的建议
     },
-
     onInput(e) {
         this.setData({
             inputValue: e.detail.value
@@ -53,9 +52,8 @@ Page({
             inputValue: ''
         });
         this.callAIModel(content);
-
-        console.log('用户消息已添加:', updatedChatHistory);
-        if (updatedChatHistory.length > 3) {
+        //每经过十五条信息就进行存储一次，并将返回数据存储在数据库中
+        if (updatedChatHistory.length % 15 === 0) {
             // 聊天信息超过10条后进行列表形式进行数据处理
             wx.request({
                 url: 'http://127.0.0.1:8000/chatmessage/ai-messagedel/', // 注意：实际可能需要后端代理
@@ -77,7 +75,6 @@ Page({
                         dataAnalysis:"网络繁忙~ 请稍后重试"
                     })
                 },
-
             })
         }
     },

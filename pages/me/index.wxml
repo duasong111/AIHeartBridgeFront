@@ -13,6 +13,7 @@
           <!-- <button class="button" bindtap="setting">设置</button> -->
           <button class="button" bindtap="PersonalInform">我的信息</button>
           <button class="button" bindtap="TestHistory">测试记录</button>
+          <button class="button" bindtap="summaryOfMentalHealth">心理健康总结</button>
         </view>
       </view>
     </l-card>

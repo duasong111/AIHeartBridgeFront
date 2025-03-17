@@ -9,8 +9,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "聊天区域",
-          "pathName": "pages/chatting/index",
+          "name": "我的页面",
+          "pathName": "pages/me/index",
           "query": "",
           "launchMode": "default",
           "scene": null
