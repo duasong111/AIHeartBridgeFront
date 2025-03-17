@@ -8,6 +8,7 @@ Page({
         showTime: "早上好", //动态的显示时间
         userName: "Duasong",
         style: 'border: 2rpx solid var(--td-component-border);border-radius: 12rpx;',
+        dataAnalysis:''  //存储用户聊天后所给的建议
     },
 
     onInput(e) {
@@ -15,7 +16,6 @@ Page({
             inputValue: e.detail.value
         });
     },
-
     selectModel() {
         const models = ['Version1.0', 'Version2.0', 'Version3.0', 'SparkAI'];
         wx.showActionSheet({
@@ -32,7 +32,6 @@ Page({
             }
         });
     },
-
     // 用户发送信息的函数
     sendMessage() {
         const content = this.data.inputValue.trim();
@@ -56,8 +55,30 @@ Page({
         this.callAIModel(content);
 
         console.log('用户消息已添加:', updatedChatHistory);
-        if(updatedChatHistory.length > 10){
-            console.log("此时给后天发送消息，去分析用户的心理状态详情");
+        if (updatedChatHistory.length > 3) {
+            // 聊天信息超过10条后进行列表形式进行数据处理
+            wx.request({
+                url: 'http://127.0.0.1:8000/chatmessage/ai-messagedel/', // 注意：实际可能需要后端代理
+                method: 'POST',
+                data: {
+                    messageList:updatedChatHistory
+                },
+                header: {
+                    'Content-Type': 'application/json'
+                },
+                success: (res) => {
+                    console.log("打印输出传输后的数据",res.data.response);
+                    this.setData({
+                        dataAnalysis:res.data.response
+                    })
+                },
+                fail: (err) => {
+                    this.setData({
+                        dataAnalysis:"网络繁忙~ 请稍后重试"
+                    })
+                },
+
+            })
         }
     },
     //去与AI大模型进行沟通对话
@@ -70,7 +91,9 @@ Page({
             url: 'http://127.0.0.1:8000/chatmessage/ai-chat/', // 注意：实际可能需要后端代理
             method: 'POST',
             data: {
-                "input_text": userInput
+                "input_text": userInput,
+                "user_id": "user789",
+                "topic_name": "随便聊聊"
             },
             header: {
                 'Content-Type': 'application/json'
