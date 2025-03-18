@@ -53,7 +53,7 @@ Page({
         });
         this.callAIModel(content);
         //每经过十五条信息就进行存储一次，并将返回数据存储在数据库中
-        if (updatedChatHistory.length % 15 === 0) {
+        if (updatedChatHistory.length % 5 === 0) {
             // 聊天信息超过10条后进行列表形式进行数据处理
             wx.request({
                 url: 'http://127.0.0.1:8000/chatmessage/ai-messagedel/', // 注意：实际可能需要后端代理

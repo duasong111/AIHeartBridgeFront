@@ -1,0 +1,15 @@
+
+/* 对返回数据的字体进行设置 */
+.returnContent{
+	text-indent: 64rpx;
+  padding: 12rpx;
+  font-size: 32rpx;
+  font-family:‘Times New Roman’, Times, serif;
+}
+.card_time{
+	margin-left: 60%;
+	/* margin: 5rpx; */
+	margin-top: 10rpx;
+	color: #93b5cf;
+}
+/*------------------------------------*/

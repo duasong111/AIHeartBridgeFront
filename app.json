@@ -7,7 +7,10 @@
     "pages/function/index",
     "pages/register/index",
     "pages/quickAssessment/index",
-    "pages/dailyRecom/index"
+    "pages/dailyRecom/index",
+    "pages/testRecord/index",
+    "pages/healthSummary/index"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

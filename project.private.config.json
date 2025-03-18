@@ -9,8 +9,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "我的页面",
-          "pathName": "pages/me/index",
+          "name": "心理健康评估页面",
+          "pathName": "pages/healthSummary/index",
           "query": "",
           "launchMode": "default",
           "scene": null

@@ -67,9 +67,9 @@ Page({
  },
   //用户登录函数--能够去向后端发送请求
   login: function() {
-    var that = this;
-    var userName = that.data.userAccound;
-    var userPassword = that.data.userPassword;
+    let that = this;
+    let userName = that.data.userAccound;
+    let userPassword = that.data.userPassword;
 
     // 在增加一个如果不输入直接登录会进行提醒的
     wx.request({
@@ -104,18 +104,17 @@ Page({
     });
   },
   registerButton:function(e){
-    var that = this;
     that.setData({
       showRegister:true
     })
   },
   // 获取用户注册提交的信息
   registerForm:function(e){
-    var that = this;
-    var Name = that.data.name;     // 姓名对应的数据字段
-    var Account = that.data.account;   // 账户对应的数据字段
-    var Password = that.data.password;
-    var ConfirmPassword = that.data.confirm_password;
+    let that = this;
+    let Name = that.data.name;     // 姓名对应的数据字段
+    let Account = that.data.account;   // 账户对应的数据字段
+    let Password = that.data.password;
+    let ConfirmPassword = that.data.confirm_password;
 
     if (!Name || !Account || !Password || !ConfirmPassword ) {
       wx.showModal({
@@ -176,9 +175,9 @@ Page({
   },
  //获取注册提交的信息
  inputRegister:function(e){
-  var that = this;
-  var inputValue = e.detail.value;             // 获取输入的值
-  var inputField = e.target.dataset.inputType; // 获取自定义属性值
+  let that = this;
+  let inputValue = e.detail.value;             // 获取输入的值
+  let inputField = e.target.dataset.inputType; // 获取自定义属性值
   this.setData({
     [inputField]: inputValue  // 将输入的值赋给对应的数据字段
   });

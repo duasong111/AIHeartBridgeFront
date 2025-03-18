@@ -21,11 +21,18 @@ Page({
       })
   
     },
+    //答题版测试记录
     TestHistory:function(){
       wx.navigateTo({
-        // url: '/pages/learnMore/index',
+        url: '/pages/testRecord/index',
       })
   
+    },
+    //心理健康总结
+    summaryOfMentalHealth:function (params) {
+      wx.navigateTo({
+        url: '/pages/healthSummary/index'
+      })
     },
   
     /**
