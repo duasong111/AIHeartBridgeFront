@@ -7,19 +7,9 @@ Page({
   data: {
     dialogShow:false, //最后提醒成绩的
     recordUserScore:[],//记录用户历次分数
-    dialogList: [
-      { id: "sasa01", content: "复杂新颖的想法比简单轻松的想法更让你兴奋。", index: 1, score: 0 },
-      { id: "sasa02", content: "你喜欢在一个安静的环境中专注于任务。", index: 2, score: 0 },
-      // { id: "sasa03", content: "你倾向于快速做出决定，而不是深思熟虑。", index: 3, score: 0 },
-      // { id: "sasa04", content: "与他人合作完成项目让你感到更有动力。", index: 4, score: 0 },
-      // { id: "sasa05", content: "你享受探索未知领域，即使没有明确的目标。", index: 5, score: 0 },
-      // { id: "sasa06", content: "按部就班的计划比即兴行动更适合你。", index: 6, score: 0 },
-      // { id: "sasa07", content: "你喜欢通过阅读或学习来获取新的知识。", index: 7, score: 0 },
-      // { id: "sasa08", content: "面对压力时，你通常能保持冷静和理智。", index: 8, score: 0 },
-      // { id: "sasa09", content: "你更喜欢独自完成任务，而不是依赖团队。", index: 9, score: 0 },
-      // { id: "sasa10", content: "尝试新事物时，你会感到兴奋而非不安。", index: 10, score: 0 }
-    ]
-  },
+    dialogList:[],
+    AISuggestions:"",
+    AIList:[],
   //点击后的显示效果---注意在判断显示的时候 你的sesected的类型要转化为number类型，不然依然是false
   onButtonTap: function (e)  {
     const questionIndex = Number(e.currentTarget.dataset.questionIndex); // 当前问题在列表中的索引
@@ -33,25 +23,64 @@ Page({
     this.setData({
       dialogList: newList
     });
-    console.log('Updated dialogList:', this.data.dialogList); // 调试用
+    // console.log('Updated dialogList:', this.data.dialogList); // 调试用
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.getTheAnswerList();
 
+  },
+  getTheAnswerList:function () {
+    var that = this
+    wx.request({
+      url: 'http://127.0.0.1:8000/info/info-getquestionlist/',
+      method: 'GET',
+      data: {},
+      header: {
+        'Accept': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          dialogList: res.data.data
+        })
+      }
+    })
   },
 
   // 计算用户提交的分数
   submitAnswers: function (e)  {
     const totalScore = this.data.dialogList.reduce((sum, item) => sum + item.score, 0);
     const updatedRecord = [...this.data.recordUserScore, totalScore]; // 将新分数追加到数组
+    if (totalScore < 20) {
+      wx.showModal({
+        title: '提示信息',
+        content: '请完成所有的选项哦~',
+        success: function (res) {
+          // if (res.confirm) { //这里是点击了确定以后
+          //   console.log('用户点击确定')
+          // } else { //这里是点击了取消以后
+          //   console.log('用户点击取消')
+          // }
+        }
+      })
+    }else{
+      let index = Math.floor((totalScore - 20) / 10); // 将得分映射到 0-8 的索引
+      if (index < 0) index = 0; // 低于20分按最低处理
+      if (index > 8) index = 8; // 高于100分按满分处理
+      // 获取对应建议
+      const suggestion = this.AIList[index];
+      console.log("展示数据",this.AIList[index])
+      this.setData({
+        dialogShow:true, //最后提醒成绩的
+        AISuggestions:suggestion,
+        recordUserScore: updatedRecord // 更新历史记录
+      })
+    }
 
-    this.setData({
-      dialogShow:true, //最后提醒成绩的
-      recordUserScore: updatedRecord // 更新历史记录
-    })
-    console.log('Total Score:', totalScore,"列表为:",recordUserScore);
+
+    // console.log('Total Score:', totalScore,"列表为:",recordUserScore);
 
     // 可以跳转到结果页面或显示结果
   },
@@ -66,7 +95,6 @@ Page({
   confirmFunction:function(){
     console.log("用户点击了确认的操作，执行啥啥啥")
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

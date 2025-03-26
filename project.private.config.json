@@ -9,8 +9,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "心理健康评估页面",
-          "pathName": "pages/healthSummary/index",
+          "name": "快速测评",
+          "pathName": "pages/quickAssessment/index",
           "query": "",
           "launchMode": "default",
           "scene": null

@@ -112,8 +112,6 @@ Page({
   
     //展示每日推荐的页面进行跳转
     dailyRecom: function () {
-      console.log("展示进入信息")
-    
       wx.navigateTo({
         url: '/pages/dailyRecom/index',
       })
@@ -130,7 +128,6 @@ Page({
           'Accept': 'application/json'
         },
         success: function (res) {
-          console.log("打印请求的数据",res.data);
           that.setData({
             getCompetitionNotifications: res.data.data
           })

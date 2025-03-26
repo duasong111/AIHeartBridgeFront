@@ -5,7 +5,7 @@
     <l-card type="primary" plaintext="{{true}}">
       <l-card type="primary" plaintext="{{true}}">
         <view class="innerContent">
-          {{item.content}}
+          {{item.testTitile}}
         </view>
       </l-card>
     </l-card>
@@ -44,7 +44,7 @@
   show="{{dialogShow}}"
   type="confirm"  
   title="您的最终得分：{{recordUserScore[recordUserScore.length - 1]}}" 
-  content="下边就是我去进行建议的一些话了"
+  content="{{AISuggestions}}"
   confirm-text="确定"
   bind:linconfirm="confirmFunction"
   confirm-color="#f60"
