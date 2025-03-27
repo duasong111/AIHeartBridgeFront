@@ -1,6 +1,5 @@
-// pages/quickAssessment/index.js
+const { serverUrls } = require('../../config.js');
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -10,6 +9,8 @@ Page({
     dialogList:[],
     AISuggestions:"",
     AIList:[],
+    netServe:""
+  },
   //点击后的显示效果---注意在判断显示的时候 你的sesected的类型要转化为number类型，不然依然是false
   onButtonTap: function (e)  {
     const questionIndex = Number(e.currentTarget.dataset.questionIndex); // 当前问题在列表中的索引
@@ -23,19 +24,26 @@ Page({
     this.setData({
       dialogList: newList
     });
-    // console.log('Updated dialogList:', this.data.dialogList); // 调试用
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+
+    this.setData({
+      netServe: serverUrls['localServerUrl']
+    });
     this.getTheAnswerList();
+    //获取AI分析的列表数据
+    this.getAIAnalysis();
 
   },
+  //获取回复的字段
   getTheAnswerList:function () {
-    var that = this
+    var that = this;
+    console.log("传输来的值是:",that.netServe);
     wx.request({
-      url: 'http://127.0.0.1:8000/info/info-getquestionlist/',
+      url: `${that.data.netServe}/info/info-getquestionlist/`,
       method: 'GET',
       data: {},
       header: {
@@ -49,6 +57,12 @@ Page({
     })
   },
 
+  //获取AI分析的字段
+  getAIAnalysis:function () {
+    
+    console.log("发送请求成功");
+  },
+
   // 计算用户提交的分数
   submitAnswers: function (e)  {
     const totalScore = this.data.dialogList.reduce((sum, item) => sum + item.score, 0);
@@ -58,20 +72,18 @@ Page({
         title: '提示信息',
         content: '请完成所有的选项哦~',
         success: function (res) {
-          // if (res.confirm) { //这里是点击了确定以后
-          //   console.log('用户点击确定')
-          // } else { //这里是点击了取消以后
-          //   console.log('用户点击取消')
-          // }
         }
       })
     }else{
-      let index = Math.floor((totalScore - 20) / 10); // 将得分映射到 0-8 的索引
-      if (index < 0) index = 0; // 低于20分按最低处理
-      if (index > 8) index = 8; // 高于100分按满分处理
-      // 获取对应建议
-      const suggestion = this.AIList[index];
-      console.log("展示数据",this.AIList[index])
+      let index = Math.floor((totalScore) / 10); // 将得分映射到 0-8 的索引
+      
+      console.log("展示答题的分数",index);
+      if (index < 2) index = 0; // 低于20分按最低处理
+      if (index > 9) index = 8; // 高于100分按满分处理
+      // // 获取对应建议
+      const suggestion = "无敌"
+      // const suggestion = this.AIList[index];
+      // console.log("展示数据",this.AIList[index])
       this.setData({
         dialogShow:true, //最后提醒成绩的
         AISuggestions:suggestion,
