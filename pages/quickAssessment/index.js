@@ -33,9 +33,10 @@ Page({
     this.setData({
       netServe: serverUrls['localServerUrl']
     });
+    this.getAIAnalysis();
     this.getTheAnswerList();
     //获取AI分析的列表数据
-    this.getAIAnalysis();
+   
 
   },
   //获取回复的字段
@@ -59,8 +60,23 @@ Page({
 
   //获取AI分析的字段
   getAIAnalysis:function () {
+    var that = this;
+    console.log("传输来的值是:",that.netServe);
+    wx.request({
+      url: `${that.data.netServe}/info/info-sendalltestdata/`,
+      method: 'GET',
+      data: {},
+      header: {
+        'Accept': 'application/json'
+      },
+      success: function (res) {
+        console.log("获取AI分析后的数据",res.data)
+        that.setData({
+          AIList: res.data.data
+        })
+      }
+    })
     
-    console.log("发送请求成功");
   },
 
   // 计算用户提交的分数
@@ -81,8 +97,7 @@ Page({
       if (index < 2) index = 0; // 低于20分按最低处理
       if (index > 9) index = 8; // 高于100分按满分处理
       // // 获取对应建议
-      const suggestion = "无敌"
-      // const suggestion = this.AIList[index];
+      const suggestion = this.data.AIList[index];
       // console.log("展示数据",this.AIList[index])
       this.setData({
         dialogShow:true, //最后提醒成绩的
