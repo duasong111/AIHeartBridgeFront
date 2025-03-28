@@ -6,14 +6,21 @@ Page({
     curIndex: 0,
     showPoP: false,
     selectedItem: null,
+    serverUrl:''
   },
   onLoad: function() {
+        //引入全局路由
+        const app = getApp();
+        const netServe = app.globalData.netServe;
+        this.setData({
+          serverUrl: netServe
+        });
     this.getAcquiringProfessionalFields();
   },
   getAcquiringProfessionalFields: function() {
     var that = this;
     wx.request({
-      url: 'http://127.0.0.1:8000/info/info-newslistdetail/',
+      url: `${that.data.serverUrl}/info/info-newslistdetail/`,
       method: 'GET',
       data: {},
       header: {

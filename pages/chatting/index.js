@@ -8,7 +8,8 @@ Page({
         showTime: "早上好", //动态的显示时间
         userName: "Duasong",
         style: 'border: 2rpx solid var(--td-component-border);border-radius: 12rpx;',
-        dataAnalysis:''  //存储用户聊天后所给的建议
+        dataAnalysis:'' , //存储用户聊天后所给的建议
+        serverUrl: ''
     },
     onInput(e) {
         this.setData({
@@ -56,7 +57,7 @@ Page({
         if (updatedChatHistory.length % 5 === 0) {
             // 聊天信息超过10条后进行列表形式进行数据处理
             wx.request({
-                url: 'http://127.0.0.1:8000/chatmessage/ai-messagedel/', // 注意：实际可能需要后端代理
+                url: `${that.data.serverUrl}/chatmessage/ai-messagedel/`, // 注意：实际可能需要后端代理
                 method: 'POST',
                 data: {
                     messageList:updatedChatHistory
@@ -85,7 +86,7 @@ Page({
         });
         // 真实接口示例（取消注释使用）
         wx.request({
-            url: 'http://127.0.0.1:8000/chatmessage/ai-chat/', // 注意：实际可能需要后端代理
+            url: `${that.data.serverUrl}/chatmessage/ai-chat/`, // 注意：实际可能需要后端代理
             method: 'POST',
             data: {
                 "input_text": userInput,
@@ -130,7 +131,13 @@ Page({
 
     //切换到这个页面就能触发的函数
     onLoad(options) {
-        this.updateGreeting();
+        //引入全局路由
+    const app = getApp();
+    const netServe = app.globalData.netServe;
+    this.setData({
+      serverUrl: netServe
+    });
+    this.updateGreeting();
     },
 
     // 更新问候语的函数

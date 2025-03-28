@@ -6,13 +6,19 @@ Page({
    */
   data: {
     getPsychometricsList:"",
-
+    serverUrl:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+        //引入全局路由
+        const app = getApp();
+        const netServe = app.globalData.netServe;
+        this.setData({
+          serverUrl: netServe
+        });
     //进入该页面就去触犯函数
     this.getPsychometricsFunction();
 
@@ -20,7 +26,7 @@ Page({
   getPsychometricsFunction:function () {
     const that = this
     wx.request({
-      url: 'http://127.0.0.1:8000/info/info-psychometrics/',
+      url: `${that.data.serverUrl}/info/info-psychometrics/`,
       method: 'GET',
       header: {
         'Accept': 'application/json'
