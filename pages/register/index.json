@@ -7,5 +7,6 @@
 		"l-popup":"../../miniprogram_npm/lin-ui/popup/index",
 		"l-input":"../../miniprogram_npm/lin-ui/input/index",
 		"l-toast":"../../miniprogram_npm/lin-ui/toast/index"
+		}
 	}
-  }
+	

@@ -21,8 +21,6 @@
     <div class="leftFont"> Agree</div>
   </view>
 
-
-
 </view>
 <l-card type="primary" plaintext="{{true}}">
   <view class="btn-container">
@@ -30,15 +28,6 @@
     <l-button type="default" shape="semicircle" bindtap="submitReset">重置</l-button>
   </view>
 </l-card>
-
-
-<!-- <l-dialog 
-  show="{{dialogShow}}" 
-  type="confirm" 
-  title="您的最终得分：{{recordUserScore[recordUserScore.length - 1]}}" 
-  content="下边就是我去进行建议的一些话了 " 
-  bind:close="closeDialog"
-/> -->
 
 <l-dialog 
   show="{{dialogShow}}"

@@ -32,7 +32,6 @@ Page({
         'Accept': 'application/json'
       },
       success: function (res) {
-        console.log("打印请求的数据",res.data.data);
         that.setData({
           getPsychometricsList: res.data.data
         })

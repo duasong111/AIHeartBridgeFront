@@ -17,6 +17,7 @@ Page({
     account: '',   // 账户对应的数据字段
     password:'',
     confirm_password:'',
+    serverUrl:"",
     data: {
       GoodSentences: [
         {
@@ -56,6 +57,11 @@ Page({
   },
 
   onLoad(options) {
+    const app = getApp();
+    const netServe = app.globalData.netServe;
+    this.setData({
+      serverUrl: netServe
+    });
     this.randomNumber();
   },
   //生成随机数，能够去将首页面试变成随机更新的
@@ -73,7 +79,7 @@ Page({
 
     // 在增加一个如果不输入直接登录会进行提醒的
     wx.request({
-      url: 'http://127.0.0.1:8000/info/info-login/',
+      url: `${that.data.serverUrl}/info/info-login/`,
       method: 'POST',
       data: {
         Account: userName,
@@ -95,7 +101,6 @@ Page({
             showTitile:"用户登录失败！",
             showBody:"用户名或密码错误,请重新登录"
           })
-          
         }
       },
       fail: function(error) {
@@ -103,7 +108,9 @@ Page({
       }
     });
   },
+  //用户点击注册功能
   registerButton:function(e){
+    const that = this;
     that.setData({
       showRegister:true
     })
@@ -130,7 +137,7 @@ Page({
       })
     }
     wx.request({
-      url: 'http://127.0.0.1:8000/info/info-register/',
+      url: `${that.data.serverUrl}/info/info-register/`,
       method: 'POST',
       data: {
         Name:Name,
