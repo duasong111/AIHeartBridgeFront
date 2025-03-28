@@ -92,24 +92,15 @@ Page({
       })
     }else{
       let index = Math.floor((totalScore) / 10); // 将得分映射到 0-8 的索引
-      
-      console.log("展示答题的分数",index);
       if (index < 2) index = 0; // 低于20分按最低处理
       if (index > 9) index = 8; // 高于100分按满分处理
-      // // 获取对应建议
       const suggestion = this.data.AIList[index];
-      // console.log("展示数据",this.AIList[index])
       this.setData({
         dialogShow:true, //最后提醒成绩的
         AISuggestions:suggestion,
         recordUserScore: updatedRecord // 更新历史记录
       })
     }
-
-
-    // console.log('Total Score:', totalScore,"列表为:",recordUserScore);
-
-    // 可以跳转到结果页面或显示结果
   },
   //用户的分数重置，进行重新计算 排序打乱
   submitReset: function (e)  {

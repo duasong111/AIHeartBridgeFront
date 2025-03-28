@@ -3,7 +3,8 @@ const { serverUrls } = require('./config.js');
 App({
 
   globalData: {
-    serverUrls: serverUrls, // 将 serverUrls 放入 globalData
+    userInfo: null,
+    netServe: serverUrls['localServerUrl']
   },
 
   onLaunch() {
@@ -19,7 +20,7 @@ App({
       }
     })
   },
-  globalData: {
-    userInfo: null
-  }
+  // globalData: {
+  //   userInfo: null
+  // }
 })
