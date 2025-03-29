@@ -1,17 +1,19 @@
 @import './icon.wxss';
 
-
-
 .showNotice{
   width: 90%;
  
 }
-
 .container {
     display: flex;
     align-items: center;
     /* justify-content: center;
   align-items: center; */
+}
+/* 顶部通告栏的设置 */
+.noticeTable{
+    padding: 6rpx;
+    margin-top: 10rpx;
 }
 /* 首页面展示的一个框框 */
 .box {

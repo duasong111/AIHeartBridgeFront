@@ -9,6 +9,9 @@
       "l-segment":"/miniprogram_npm/lin-ui/segment/index",
       "l-notice-bar":"../../miniprogram_npm/lin-ui/notice-bar/index",
       "l-segment-item":"../../miniprogram_npm/lin-ui/segment-item/index",
-      "l-card":"../../miniprogram_npm/lin-ui/card/index"
+      "l-card":"../../miniprogram_npm/lin-ui/card/index",
+      "l-dialog ":"../../miniprogram_npm/lin-ui/dialog/index",
+      "l-toast":"../../miniprogram_npm/lin-ui/toast/index",
+      "l-popup ":"../../miniprogram_npm/lin-ui/popup/index"
     }
   }

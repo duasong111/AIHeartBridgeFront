@@ -6,6 +6,8 @@ Page({
     getCompetitionNotifications: "",
     //获取新闻通知
     getNews: "",
+    //添加通告栏的数据
+    bulletinBoard:[],
     //获取bing图片展示
     images: {},
     query: {},
@@ -26,6 +28,8 @@ Page({
     this.setData({
       serverUrl: netServe
     });
+    //获取通告栏信息
+    this.getbulletinBoardData();
     // 获取比赛通知
     this.getGameNotices();
     //获取新闻通知
@@ -87,8 +91,6 @@ Page({
     this.getimages()
   },
 
-
-
   //获取当前滑块的index
   bindchange: function (e) {
     const that = this;
@@ -99,35 +101,29 @@ Page({
   //点击切换，滑块index赋值
   checkCurrent: function (e) {
     const that = this;
-
     if (that.data.currentData === e.target.dataset.current) {
       return false;
     } else {
-
       that.setData({
         currentData: e.target.dataset.current
       })
     }
   },
-
   // 展示快速测评的答题模式
   quickAssess: function () {
     wx.navigateTo({
       url: '/pages/quickAssessment/index'
     })
   },
-
   //展示每日推荐的页面进行跳转
   dailyRecom: function () {
     wx.navigateTo({
       url: '/pages/dailyRecom/index',
     })
   },
-
-  //获取
+  //获取壹心理内容
   getGameNotices: function () {
     var that = this
-    console.log();
     wx.request({
       url: `${that.data.serverUrl}/newentrance/art-notice/`,
       method: 'GET',
@@ -142,7 +138,7 @@ Page({
       }
     })
   },
-  // 获取首创新闻
+  // 获取活动详情
   getNews: function () {
     var that = this
     wx.request({
@@ -159,8 +155,22 @@ Page({
       }
     })
   },
-
-
+  //获取通告栏的内容
+  getbulletinBoardData: function () {
+    var that = this
+    wx.request({
+      url: `${that.data.serverUrl}/newentrance/art-about/`,
+      method: 'GET',
+      header: {
+        'Accept': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+            bulletinBoard: res.data.data.slice(-1)[0]
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

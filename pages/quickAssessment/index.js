@@ -1,186 +1,200 @@
-const { serverUrls } = require('../../config.js');
 Page({
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    dialogShow:false, //最后提醒成绩的
-    recordUserScore:[],//记录用户历次分数
-    dialogList: new Array(20).fill(0),
-    selectDatalist:[],
-    AISuggestions:"",
-    AIList:[],
-    netServe:""
-  },
-  //点击后的显示效果---注意在判断显示的时候 你的sesected的类型要转化为number类型，不然依然是false
-  onButtonTap: function (e)  {
-    const questionIndex = Number(e.currentTarget.dataset.questionIndex); // 当前问题在列表中的索引
-    const score = Number(e.currentTarget.dataset.index); // 点击的按钮值（1-5）
-    
-    let scoreList = this.data.selectDatalist;
-    scoreList[questionIndex] = score ? score : 0; //没有选就是 0
-    const newList = this.data.dialogList.map((item, idx) => {
-      if (idx === questionIndex) {
-        return { ...item, score: score }; // 只更新当前问题的 score
-      }
-      return item; // 其他问题不变
-    });
-    this.setData({
-      dialogList: newList,
-      selectDatalist: scoreList
-    });
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-    // console.log('初始化时：', JSON.stringify(this.data.dialogList));
-    this.setData({
-      netServe: serverUrls['localServerUrl']
-    });
-    this.getAIAnalysis();
-    this.getTheAnswerList();
-    //获取AI分析的列表数据
-  },
-  //获取回复的字段
-  getTheAnswerList:function () {
-    var that = this;
-    wx.request({
-      url: `${that.data.netServe}/info/info-getquestionlist/`,
-      method: 'GET',
-      data: {},
-      header: {
-        'Accept': 'application/json'
-      },
-      success: function (res) {
-        that.setData({
-          dialogList: res.data.data
-        })
-      }
-    })
-  },
+    /**
+     * 页面的初始数据
+     */
+    data: {
+        dialogShow: false, //最后提醒成绩的
+        recordUserScore: [], //记录用户历次分数
+        dialogList: new Array(20).fill(0),
+        selectDatalist: [],
+        AISuggestions: "",
+        AIList: [],
+        lastScore: "",
+        serverUrl: ''
+    },
+    //点击后的显示效果---注意在判断显示的时候 你的sesected的类型要转化为number类型，不然依然是false
+    onButtonTap: function (e) {
+        const questionIndex = Number(e.currentTarget.dataset.questionIndex); // 当前问题在列表中的索引
+        const score = Number(e.currentTarget.dataset.index); // 点击的按钮值（1-5）
 
-  //获取AI分析的字段
-  getAIAnalysis:function () {
-    var that = this;
-    wx.request({
-      url: `${that.data.netServe}/info/info-sendalltestdata/`,
-      method: 'GET',
-      data: {},
-      header: {
-        'Accept': 'application/json'
-      },
-      success: function (res) {
-        that.setData({
-          AIList: res.data.data
+        let scoreList = this.data.selectDatalist;
+        scoreList[questionIndex] = score ? score : 0; //没有选就是 0
+        const newList = this.data.dialogList.map((item, idx) => {
+            if (idx === questionIndex) {
+                return {
+                    ...item,
+                    score: score
+                }; // 只更新当前问题的 score
+            }
+            return item; // 其他问题不变
+        });
+        this.setData({
+            dialogList: newList,
+            selectDatalist: scoreList
+        });
+    },
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad(options) {
+        // console.log('初始化时：', JSON.stringify(this.data.dialogList));
+        const app = getApp();
+        const netServe = app.globalData.netServe;
+        this.setData({
+            serverUrl: netServe
+        });
+        this.getAIAnalysis();
+        this.getTheAnswerList();
+        //获取AI分析的列表数据
+    },
+    //获取回复的字段
+    getTheAnswerList: function () {
+        var that = this;
+        wx.request({
+            url: `${that.data.serverUrl}/info/info-getquestionlist/`,
+            method: 'GET',
+            data: {},
+            header: {
+                'Accept': 'application/json'
+            },
+            success: function (res) {
+                that.setData({
+                    dialogList: res.data.data
+                })
+            }
         })
-      }
-    })
-    
-  },
+    },
 
-  // 计算用户提交的分数
-  submitAnswers: function (e)  {
-    const totalScore = this.data.dialogList.reduce((sum, item) => sum + item.score, 0);
-    const updatedRecord = [...this.data.recordUserScore, totalScore]; // 将新分数追加到数组
-    if (totalScore < 20) {
-      wx.showModal({
-        title: '提示信息',
-        content: '请完成所有的选项哦~',
-        success: function (res) {
+    //获取AI分析的字段
+    getAIAnalysis: function () {
+        var that = this;
+        wx.request({
+            url: `${that.data.serverUrl}/info/info-sendalltestdata/`,
+            method: 'GET',
+            data: {},
+            header: {
+                'Accept': 'application/json'
+            },
+            success: function (res) {
+                that.setData({
+                    AIList: res.data.data
+                })
+            }
+        })
+
+    },
+
+    // 计算用户提交的分数
+    submitAnswers: function (e) {
+        const totalScore = this.data.dialogList.reduce((sum, item) => sum + item.score, 0);
+        const updatedRecord = [...this.data.recordUserScore, totalScore]; // 将新分数追加到数组
+        if (totalScore < 20) {
+            wx.showModal({
+                title: '提示信息',
+                content: '请完成所有的选项哦~',
+                success: function (res) {}
+            })
+        } else {
+            let index = Math.floor((totalScore) / 10); // 将得分映射到 0-8 的索引
+            if (index < 2) index = 0; // 低于20分按最低处理
+            if (index > 9) index = 8; // 高于100分按满分处理
+            const suggestion = this.data.AIList[index];
+            this.setData({
+                dialogShow: true, //最后提醒成绩的
+                AISuggestions: suggestion,
+                recordUserScore: updatedRecord, // 更新历史记录
+                lastScore: totalScore //反正只是记录最后一次，也就是最高的一次即可
+            })
+            this.submitSelectDataAmdQuestion(); //调用函数，提交给后台去进行统计
         }
-      })
-    }else{
-    
-      let index = Math.floor((totalScore) / 10); // 将得分映射到 0-8 的索引
-      if (index < 2) index = 0; // 低于20分按最低处理
-      if (index > 9) index = 8; // 高于100分按满分处理
-      const suggestion = this.data.AIList[index];
-      this.submitSelectDataAmdQuestion(); //调用函数，提交给后台去进行统计
-      this.setData({
-        dialogShow:true, //最后提醒成绩的
-        AISuggestions:suggestion,
-        recordUserScore: updatedRecord // 更新历史记录
-      })
-    }
-  },
-  //用户的分数重置，进行重新计算 排序打乱
-  submitReset: function (e)  {
-    const newList = this.data.dialogList.map(item => ({ ...item, score: 0 }));
-    this.setData({
-      dialogList: newList
-    });
-  },
-  submitSelectDataAmdQuestion:function () {
-      //这个函数的作用是将选择的数据以及提交的数据去进行一个统一的上传
-      const selectDataList = this.data.selectDatalist
-      const questionaryList = this.data.AISuggestions
-      wx.request({
-        url: `${that.data.netServe}/info/XXXXXXX/`,//用来去发送给后端的数据接口
-        method: 'GET',
-        data: {},
-        header: {
-          'Accept': 'application/json'
-        },
-        success: function (res) {
-          this.setData({
-            // AIList: res.data.data
+    },
+    //用户的分数重置，进行重新计算 排序打乱
+    submitReset: function (e) {
+        const newList = this.data.dialogList.map(item => ({
+            ...item,
+            score: 0
+        }));
+        this.setData({
+            dialogList: newList
+        });
+    },
+    submitSelectDataAmdQuestion: function () {
+        //这个函数的作用是将选择的数据以及提交的数据去进行一个统一的上传
+        const that = this.data //简化一点 that 代替 this.data
+        const datatime = new Date().toISOString()
+        wx.request({
+            url: `${that.serverUrl}/info/info-assessmentsummary/`, //用来去发送给后端的数据接口
+            method: 'POST',
+            data: {
+                user: "1",
+                randomQuestions: that.dialogList,
+                selected: that.selectDatalist,
+                latestScore: that.lastScore,
+                testTime: datatime
+            },
+            header: {
+                'Accept': 'application/json'
+            },
+            success: function (res) {
+                console.log("显示传输回来的值:", res.data)
+                //   this.setData({
+                //     // AIList: res.data.data
+                //   })
+            }
+        })
+    },
+    // 最后提交的时候用户点击了确认的按钮，执行的操作--返回主页
+    confirmFunction: function () {
+        wx.navigateTo({
+            url: '/pages/mainPage/index'
           })
-        }
-      })
+    },
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady() {
 
-    
-  },
-  // 最后提交的时候用户点击了确认的按钮，执行的操作
-  confirmFunction:function(){
-    console.log('用户点击了提交信息。');
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
+    },
 
-  },
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow() {
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
+    },
 
-  },
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide() {
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
+    },
 
-  },
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload() {
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
+    },
 
-  },
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh() {
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
+    },
 
-  },
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom() {
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
+    },
 
-  },
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage() {
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
+    }
 })

@@ -34,9 +34,9 @@
   type="confirm"  
   title="您的最终得分：{{recordUserScore[recordUserScore.length - 1]}}" 
   content="{{AISuggestions}}"
-  confirm-text="确定"
+  confirm-text="返回主页"
   bind:linconfirm="confirmFunction"
   confirm-color="#f60"
-  cancel-text="重试"
+  cancel-text="再来一次"
   bind:lincancel="submitReset"
   cancel-color="#999" />

@@ -1,5 +1,9 @@
 <!-- <l-notice-bar show="{{true}}"  type="roll" speed="2000">我是通告栏</l-notice-bar> -->
 <view class="container">
+<!-- 添加一个通告栏 -->
+<view class="noticeTable">
+    <l-notice-bar  front-icon-name="notification"  show="{{bulletinBoard.is_show}}" close="{{true}}">{{bulletinBoard.content}}</l-notice-bar>
+</view>
   <!-- 轮播图 -->
   <view class="carouselChart">
     <swiper autoplay="{{true}}" circular="{{true}}" indicator-dots="{{true}}" interval="3000" indicator-color="#afafb0" indicator-active-color="#ffffff">
