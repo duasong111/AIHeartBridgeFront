@@ -2,20 +2,48 @@
   <view class="avatar-container">
     <image class="avatar" src="{{avatarUrl}}"></image>
   </view>
-  <view class="username">{{username}}</view>
+</view>
+<view class="userStyle">
+  <view class="userTitle">🐱‍🚀用户名: </view>
+  <view class="username">{{userInformData[0].user}}</view>
+</view>
+
+  <view class="userInform">
+    <view class="zone_email">
+      <view class="country">🌏城市 :{{userInformData[0].Country}}</view>
+      <view class="email">🕸 邮箱:{{userInformData[0].email}}</view>
+    </view>
+    <view class="signature">
+      <view class="signatureHead">🌵个性签名:</view>
+      <view class="signatureBody">"{{userInformData[0].signature}}"</view>
+    </view>
+
+    <view class="timeStyle">
+    <view class="timeHead">🕛上次登录时间:</view>
+    <view class="lasttime">{{userInformData[0].LastLoginTime}}</view>
+    
+    </view>
+    
+  </view>
   <view class="box-container">
   </view>
   <view class="setting">
     <l-card type="primary" plaintext="{{true}}" title="🍍功能框">
       <view class="content">
         <view class="button-container">
-
           <!-- <button class="button" bindtap="setting">设置</button> -->
-          <button class="button" bindtap="PersonalInform">我的信息</button>
-          <button class="button" bindtap="TestHistory">测试记录</button>
+          <!-- <button class="button" bindtap="PersonalInform">我的信息</button> -->
+          <!-- <button class="button" bindtap="TestHistory">测试记录</button> -->
+          <button class="button" bindtap="noticeCenter">通知中心</button>
           <button class="button" bindtap="summaryOfMentalHealth">心理健康总结</button>
         </view>
       </view>
     </l-card>
+    <l-card type="primary" plaintext="{{true}}">
+      <view class="content">
+        <view class="button-container">
+          <button class="button" bindtap="projectDevelop">开发历程</button>
+        </view>
+      </view>
+    </l-card>
   </view>
-</view>

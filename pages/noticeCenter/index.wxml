@@ -1,0 +1,11 @@
+<!-- 通知中心采用卡片的形式，同时去渲染响应的颜色 -->
+<view class="container">
+    <view class="cardSetting"style="border: 5rpx solid {{item.color || '#b2bbbe'}};" wx:for="{{bulletinBoardList}}" wx:if="{{item.is_show}}" wx:key="{{item.id}}">
+        <view class="title">{{item.title}}</view>
+        <view class="contentBody">{{item.content}}</view>
+        <view class="timeStyle">
+            <icon class="iconfont icon-time" />
+            <view class="bottomTime">{{item.dates}}</view>
+        </view>
+    </view>
+</view>

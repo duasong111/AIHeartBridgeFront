@@ -4,7 +4,9 @@ App({
 
   globalData: {
     userInfo: null,
-    netServe: serverUrls['localServerUrl']
+    netServe: serverUrls['localServerUrl'],
+    account: "",
+    is_active : false
   },
 
   onLaunch() {

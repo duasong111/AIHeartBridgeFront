@@ -9,8 +9,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "首页面",
-          "pathName": "pages/mainPage/index",
+          "name": "我的页面",
+          "pathName": "pages/me/index",
           "query": "",
           "launchMode": "default",
           "scene": null

@@ -94,7 +94,10 @@ Page({
           wx.redirectTo({
             url: '/pages/mainPage/index'
           });
-          
+          //记录登录的用户名 --以及判断是否登录成功
+          const app = getApp();
+          app.globalData.account = userName;
+          app.globalData.is_active = true //确认登录了
         }else{
           that.setData({
             showDialog:true,

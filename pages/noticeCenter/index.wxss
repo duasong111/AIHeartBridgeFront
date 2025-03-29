@@ -1,0 +1,50 @@
+
+/* 整体的布局 */
+.container{
+    width: 90%;
+    display: flex;
+    align-content: center;
+    margin: 0 auto;
+}
+/* 卡片样式的设置 */
+.cardSetting{
+    /* border: 1rpx solid rgb(219, 107, 107); */
+    margin-bottom: 15rpx;
+    border-radius: 15rpx;
+    background-color: rgb(255, 255, 255);
+    padding: 15rpx;
+    box-shadow: 1rpx 2rpx 4rpx rgb(92, 88, 82);
+}
+/* 对标题的设置 */
+.title{
+    /* border: 1rpx solid aliceblue;    */
+    padding: 3rpx;
+    font-size:larger;
+    font-weight: 700;
+    color: skyblue; 
+}
+/* 对通告内容的设置 */
+.contentBody{
+    padding: 10rpx;
+    margin: 10rpx 0;
+    /* border: 1rpx solid aliceblue; */
+    font-family:Cambria, Cochin, Georgia, Times, ‘Times New Roman’, serif;
+}
+/* 对时间这一行的设置 */
+.timeStyle{
+    display: flex;          
+    flex-direction: row;   
+    align-items: center;    
+}
+.iconfont.icon-time {
+    font-size: 32rpx;       /* 图标大小，可调整 */
+    margin-right: 10rpx;    /* 图标和文本之间的间距 */
+  }
+  
+/* 对底部时间的设置 */
+.bottomTime{
+    margin-left: 10rpx;
+    font-size: smaller;
+    font-family:Cambria, Cochin, Georgia, Times, ‘Times New Roman’, serif;
+}
+

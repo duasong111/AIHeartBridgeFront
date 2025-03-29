@@ -1,2 +1,4 @@
-<!--pages/testRecord/index.wxml-->
-<text>pages/testRecord/index.wxml</text>
+<view class="container">
+将要展示测试的记录
+
+</view>

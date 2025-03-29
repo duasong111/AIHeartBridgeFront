@@ -9,7 +9,10 @@
     "pages/quickAssessment/index",
     "pages/dailyRecom/index",
     "pages/testRecord/index",
-    "pages/healthSummary/index"
+    "pages/healthSummary/index",
+    "pages/noticeCenter/index",
+    "pages/myMessage/index",
+    "pages/projectDevelopment/index"
 
 
   ],

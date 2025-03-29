@@ -1,0 +1,33 @@
+<view class="container">
+	<view class="projectProgram">项目开发计划</view>
+  <view class="steps">
+    <!-- 自定义描述内容 -->
+    <l-steps reverse="{{true}}" direction="column" active-index="2">
+      <l-step title="阶段一">
+        <view class="describe-container" slot="describe">
+          对项目进行初步的构建，外观去找一些现有的程序去进行参考。
+        </view>
+      </l-step>
+      <l-step title="阶段二">
+        <view class="describe-container" slot="describe">
+          对已有页面去进行完善，去进行进一步的美化。
+        </view>
+      </l-step>
+      <l-step title="阶段三">
+        <view class="describe-container" slot="describe">
+        <view class="card-content">
+          与后端数据进行交互，使数据变成活的，不要使用静态数据。
+        </view>
+        </view>
+      </l-step>
+			<l-step title="阶段四">
+        <view class="describe-container" slot="describe">
+        <view class="card-content">
+          对后台接口去进行封装，避免大量雍杂的数据。
+        </view>
+        </view>
+      </l-step>
+    </l-steps>
+  </view>
+
+</view>
