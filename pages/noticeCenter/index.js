@@ -19,9 +19,7 @@ Page({
     this.setData({
       serverUrl: netServe
     });
-
     this.getbulletinBoardData();
-
   },
     //获取通告栏的内容
     getbulletinBoardData: function () {
@@ -33,7 +31,6 @@ Page({
             'Accept': 'application/json'
           },
           success: function (res) {
-              console.log("展示获取的数据",res.data.data)
             that.setData({
                 bulletinBoardList: res.data.data
             })
@@ -46,7 +43,7 @@ Page({
    */
   onReady() {
 
-  },
+  }, 
 
   /**
    * 生命周期函数--监听页面显示

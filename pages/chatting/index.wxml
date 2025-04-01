@@ -1,7 +1,7 @@
 <view class="container">
   <!-- 欢迎消息 -->
   <view class="welcome">
-    <view>{{showTime}}，{{userName}}</view>
+    <view>{{showTime}}，{{currentAccount}}</view>
     <view>想聊点什么？</view>
   </view>
 <!-- 对话框的内容 -->

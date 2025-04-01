@@ -20,8 +20,8 @@
     <t-button theme="primary" icon="{{item.score === 5 ? 'check' : ''}}" variant="{{item.score === 5 ? '' : 'dashed'}}" size="large" shape="circle" bindtap="onButtonTap" data-question-index="{{idx}}" data-index="5">{{item.score === 5 ? '' : '5'}}</t-button>
     <div class="leftFont"> Agree</div>
   </view>
-
 </view>
+
 <l-card type="primary" plaintext="{{true}}">
   <view class="btn-container">
     <l-button type="success" shape="semicircle" bindtap="submitAnswers">提交</l-button>

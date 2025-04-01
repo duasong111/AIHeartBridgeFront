@@ -9,15 +9,20 @@ Page({
         userName: "Duasong",
         style: 'border: 2rpx solid var(--td-component-border);border-radius: 12rpx;',
         dataAnalysis:'' , //存储用户聊天后所给的建议
-        serverUrl: ''
-    },
+        serverUrl: '',
+        currentAccount: ""
+      },
+      /**
+       * 生命周期函数--监听页面加载
+       */
+
     onInput(e) {
         this.setData({
             inputValue: e.detail.value
         });
     },
     selectModel() {
-        const models = ['Version1.0', 'Version2.0', 'Version3.0', 'SparkAI'];
+        const models = ['Spark Lite', 'Spark4.0 Ultra'];
         wx.showActionSheet({
             itemList: models,
             success: (res) => {
@@ -57,7 +62,7 @@ Page({
         if (updatedChatHistory.length % 5 === 0) {
             // 聊天信息超过10条后进行列表形式进行数据处理
             wx.request({
-                url: `${that.data.serverUrl}/chatmessage/ai-messagedel/`, // 注意：实际可能需要后端代理
+                url: 'http://127.0.0.1:8000/chatmessage/ai-messagedel/', // 注意：实际可能需要后端代理 
                 method: 'POST',
                 data: {
                     messageList:updatedChatHistory
@@ -66,7 +71,6 @@ Page({
                     'Content-Type': 'application/json'
                 },
                 success: (res) => {
-                    console.log("打印输出传输后的数据",res.data.response);
                     this.setData({
                         dataAnalysis:res.data.response
                     })
@@ -86,7 +90,7 @@ Page({
         });
         // 真实接口示例（取消注释使用）
         wx.request({
-            url: `${that.data.serverUrl}/chatmessage/ai-chat/`, // 注意：实际可能需要后端代理
+            url:'http://127.0.0.1:8000/chatmessage/ai-chat/', // 注意：实际可能需要后端代理
             method: 'POST',
             data: {
                 "input_text": userInput,
@@ -125,7 +129,6 @@ Page({
                 wx.hideLoading();
             }
         });
-
     },
 
 
@@ -134,8 +137,10 @@ Page({
         //引入全局路由
     const app = getApp();
     const netServe = app.globalData.netServe;
+    const account = app.globalData.account;
     this.setData({
-      serverUrl: netServe
+      serverUrl: netServe,
+      currentAccount: account
     });
     this.updateGreeting();
     },

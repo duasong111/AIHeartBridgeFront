@@ -37,7 +37,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        // console.log('初始化时：', JSON.stringify(this.data.dialogList));
         const app = getApp();
         const netServe = app.globalData.netServe;
         this.setData({

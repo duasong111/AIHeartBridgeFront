@@ -9,8 +9,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "我的页面",
-          "pathName": "pages/me/index",
+          "name": "快速选择",
+          "pathName": "pages/quickAssessment/index",
           "query": "",
           "launchMode": "default",
           "scene": null

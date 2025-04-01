@@ -43,6 +43,7 @@
       <view class="content">
         <view class="button-container">
           <button class="button" bindtap="projectDevelop">开发历程</button>
+          <button class="button" bindtap="exitLogin">退出登录</button>
         </view>
       </view>
     </l-card>
