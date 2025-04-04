@@ -97,10 +97,10 @@ Page({
             let index = Math.floor((totalScore) / 10); // 将得分映射到 0-8 的索引
             if (index < 2) index = 0; // 低于20分按最低处理
             if (index > 9) index = 8; // 高于100分按满分处理
-            const suggestion = this.data.AIList[index];
+            // const suggestion = this.data.AIList[index];
             this.setData({
-                dialogShow: true, //最后提醒成绩的
-                AISuggestions: suggestion,
+                // dialogShow: true, //最后提醒成绩的
+                // AISuggestions: suggestion,
                 recordUserScore: updatedRecord, // 更新历史记录
                 lastScore: totalScore //反正只是记录最后一次，也就是最高的一次即可
             })
@@ -118,35 +118,65 @@ Page({
         });
     },
     submitSelectDataAmdQuestion: function () {
-        //这个函数的作用是将选择的数据以及提交的数据去进行一个统一的上传
-        const that = this.data //简化一点 that 代替 this.data
-        const datatime = new Date().toISOString()
+        // 这个函数的作用是将选择的数据以及提交的数据进行统一上传
+        const that = this; // 使用 that 代替 this，避免作用域问题
+        const datatime = new Date().toISOString();
+    
+        // 在请求开始前显示加载提示
+        wx.showLoading({
+            title: 'AI分析中...',
+            mask: true // 防止用户在加载时误操作
+        });
+    
         wx.request({
-            url: `${that.serverUrl}/info/info-assessmentsummary/`, //用来去发送给后端的数据接口
+            url: `${that.data.serverUrl}/info/info-assessmentsummary/`, // 发送给后端的数据接口
             method: 'POST',
             data: {
                 user: "1",
-                randomQuestions: that.dialogList,
-                selected: that.selectDatalist,
-                latestScore: that.lastScore,
+                randomQuestions: that.data.dialogList,
+                selected: that.data.selectDatalist,
+                latestScore: that.data.lastScore,
                 testTime: datatime
             },
             header: {
                 'Accept': 'application/json'
             },
             success: function (res) {
-                console.log("显示传输回来的值:", res.data)
-                //   this.setData({
-                //     // AIList: res.data.data
-                //   })
+                console.log("显示传输回来的值:", res.data.ai_analysis);
+    
+                // 解析返回的数据
+                let data = typeof res.data === 'string' ? JSON.parse(res.data) : res.data;
+    
+                // 关闭加载提示
+                wx.hideLoading();
+    
+                // 设置AI分析结果并显示对话框
+                that.setData({
+                    AISuggestions: data.ai_analysis || '暂无分析结果', // 防止ai_analysis为空
+                    dialogShow: true // 显示分析结果的对话框
+                });
+            },
+            fail: function (err) {
+                // 请求失败时关闭加载提示并提示错误
+                wx.hideLoading();
+                wx.showToast({
+                    title: '加载失败，请重试',
+                    icon: 'none',
+                    duration: 2000
+                });
+                console.error("请求失败:", err);
+            },
+            complete: function () {
+                // 确保无论成功或失败都关闭加载提示（可选，视需求而定）
+                // wx.hideLoading();
             }
-        })
+        });
     },
     // 最后提交的时候用户点击了确认的按钮，执行的操作--返回主页
     confirmFunction: function () {
         wx.navigateTo({
             url: '/pages/mainPage/index'
-          })
+        })
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
