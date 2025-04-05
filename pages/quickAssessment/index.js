@@ -10,7 +10,9 @@ Page({
         AISuggestions: "",
         AIList: [],
         lastScore: "",
-        serverUrl: ''
+        serverUrl: '',
+        selectedModel:"",
+        selectedType:""
     },
     //点击后的显示效果---注意在判断显示的时候 你的sesected的类型要转化为number类型，不然依然是false
     onButtonTap: function (e) {
@@ -43,16 +45,53 @@ Page({
             serverUrl: netServe
         });
         this.getAIAnalysis();
-        this.getTheAnswerList();
+        // this.getTheAnswerList();
+        this.getSelectTypleList();
         //获取AI分析的列表数据
     },
+    //用户先进行选择类型
+    getSelectTypleList: function () {
+            // 定义题目类型
+            const models = ['心理健康', '情感问卷', '人格测试'];
+
+            // 让用户选择题目类型
+            wx.showActionSheet({
+                itemList: models,
+                success: (res) => {
+                    // 获取用户选择的模型类型
+                    const selected = models[res.tapIndex];
+                    const selectedType = res.tapIndex + 1; // type 值对应于数组的索引 + 1
+
+                    // 设置当前选择的模型和对应的 type 值
+                    this.setData({
+                        selectedModel: selected,
+                        selectedType: selectedType // 保存用户选择的类型
+                    });
+
+                    // 显示已选择的提示
+                    wx.showToast({
+                        title: `已切换到: ${selected}`,
+                        icon: 'none'
+                    });
+
+                    // 发送请求，使用用户选择的 type
+                    this.getTheAnswerList(selectedType);
+                },
+                fail: (err) => {
+                    console.log('选择取消或出现错误', err);
+                }
+            });
+
+    },
     //获取回复的字段
-    getTheAnswerList: function () {
+    getTheAnswerList: function (type) {
         var that = this;
         wx.request({
             url: `${that.data.serverUrl}/info/info-getquestionlist/`,
-            method: 'GET',
-            data: {},
+            method: 'POST',
+            data: {
+                type:type
+            },
             header: {
                 'Accept': 'application/json'
             },
@@ -60,6 +99,8 @@ Page({
                 that.setData({
                     dialogList: res.data.data
                 })
+            },fail: function (err) {
+                console.error('请求失败', err);
             }
         })
     },
@@ -97,6 +138,7 @@ Page({
             let index = Math.floor((totalScore) / 10); // 将得分映射到 0-8 的索引
             if (index < 2) index = 0; // 低于20分按最低处理
             if (index > 9) index = 8; // 高于100分按满分处理
+             //说明:以下注释的两个开始的时候是进行死数据，后续换成了AI接口   
             // const suggestion = this.data.AIList[index];
             this.setData({
                 // dialogShow: true, //最后提醒成绩的
@@ -121,13 +163,11 @@ Page({
         // 这个函数的作用是将选择的数据以及提交的数据进行统一上传
         const that = this; // 使用 that 代替 this，避免作用域问题
         const datatime = new Date().toISOString();
-    
         // 在请求开始前显示加载提示
         wx.showLoading({
             title: 'AI分析中...',
             mask: true // 防止用户在加载时误操作
         });
-    
         wx.request({
             url: `${that.data.serverUrl}/info/info-assessmentsummary/`, // 发送给后端的数据接口
             method: 'POST',
@@ -142,14 +182,9 @@ Page({
                 'Accept': 'application/json'
             },
             success: function (res) {
-                console.log("显示传输回来的值:", res.data.ai_analysis);
-    
-                // 解析返回的数据
                 let data = typeof res.data === 'string' ? JSON.parse(res.data) : res.data;
-    
                 // 关闭加载提示
                 wx.hideLoading();
-    
                 // 设置AI分析结果并显示对话框
                 that.setData({
                     AISuggestions: data.ai_analysis || '暂无分析结果', // 防止ai_analysis为空
