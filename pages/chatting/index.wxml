@@ -4,10 +4,17 @@
     <view>{{showTime}}，{{currentAccount}}</view>
     <view>想聊点什么？</view>
   </view>
-<!-- 对话框的内容 -->
+  <!-- 对话框的内容 -->
   <view class="chat-container" wx:for="{{chatHistory}}" wx:key="index" wx:for-item="message" data-sender="{{message.sender}}">
     <l-card type="primary" plaintext="{{true}}" title="">
       <view>{{message.content}}</view>
+
+      <!-- 只显示 AI 消息时的语音播放按钮 -->
+      <view wx:if="{{message.sender === 'AI'}}">
+        <t-button theme="danger" size="small" variant="outline" shape="round" bindtap="vedioPlay" data-text="{{message.content}}">
+          语音播放
+        </t-button>
+      </view>
     </l-card>
   </view>
   <l-card type="primary" plaintext="{{true}}" title="🌞当前对话版本:{{selectedModel}}">
@@ -17,6 +24,7 @@
         <view class="button-container">
           <t-button theme="primary" size="small" variant="outline" shape="round" bindtap="selectModel">版本切换</t-button>
           <t-button theme="danger" size="small" variant="outline" shape="round" bindtap="sendMessage">发送对话</t-button>
+          <t-button theme="warning" size="small" variant="outline" shape="round" bindtap="vedioPlay">播放</t-button>
         </view>
       </l-card>
     </view>

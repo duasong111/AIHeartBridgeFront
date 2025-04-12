@@ -37,6 +37,7 @@ Page({
             }
         });
     },
+
     // 用户发送信息的函数
     sendMessage() {
         const content = this.data.inputValue.trim();
@@ -162,6 +163,40 @@ Page({
         }
         this.setData({
             showTime: greeting
+        });
+    },
+
+    //进行语音播放功能
+    vedioPlay(){
+
+        const text = e.currentTarget.dataset.text;
+
+        console.log("进入了视频播放页面")
+        wx.request({
+            url: 'http://127.0.0.1:8000/chatmessage/audio-play/',  // 你的 Django 接口地址
+            
+            method: 'POST',
+            data: {
+                text: text  // 传递当前消息的文本
+            },
+            success(res) {
+                if (res.statusCode === 200) {
+                    const audio = wx.createInnerAudioContext();
+                    audio.src = res.tempFilePath;  // 假设返回的是音频流路径
+                    audio.play();
+                } else {
+                    wx.showToast({
+                        title: '语音播放失败',
+                        icon: 'none'
+                    });
+                }
+            },
+            fail() {
+                wx.showToast({
+                    title: '请求失败，请稍后再试',
+                    icon: 'none'
+                });
+            }
         });
     },
 

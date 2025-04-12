@@ -61,16 +61,14 @@ Page({
                     // 获取用户选择的模型类型
                     const selected = models[res.tapIndex];
                     const selectedType = res.tapIndex + 1; // type 值对应于数组的索引 + 1
-
                     // 设置当前选择的模型和对应的 type 值
                     this.setData({
                         selectedModel: selected,
                         selectedType: selectedType // 保存用户选择的类型
                     });
-
                     // 显示已选择的提示
                     wx.showToast({
-                        title: `已切换到: ${selected}`,
+                        title: `已选择: ${selected}`,
                         icon: 'none'
                     });
 

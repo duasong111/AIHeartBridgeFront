@@ -9,8 +9,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "快速选择",
-          "pathName": "pages/quickAssessment/index",
+          "name": "语音输入",
+          "pathName": "pages/chatting/index",
           "query": "",
           "launchMode": "default",
           "scene": null
