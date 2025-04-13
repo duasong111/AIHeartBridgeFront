@@ -9,7 +9,7 @@
     "miniprogram": {
       "list": [
         {
-          "name": "语音输入",
+          "name": "AI聊天",
           "pathName": "pages/chatting/index",
           "query": "",
           "launchMode": "default",

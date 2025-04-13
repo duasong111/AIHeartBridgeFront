@@ -1,42 +1,56 @@
 .container {
   margin-top: 10%;
 }
+
 /* 欢迎页面的设置 */
 .welcome {
   padding: 20rpx;
-  text-align: center; /* 居中显示 */
-  color: #665d5d; /* 深灰色文字，与消息一致 */
-  font-size: 32rpx; /* 与输入框字体大小一致 */
+  text-align: center;
+  /* 居中显示 */
+  color: #665d5d;
+  /* 深灰色文字，与消息一致 */
+  font-size: 32rpx;
+  /* 与输入框字体大小一致 */
 }
+
 .welcome view {
-  margin-bottom: 10rpx; /* 两行之间的间距 */
+  margin-bottom: 10rpx;
+  /* 两行之间的间距 */
 }
 
 
 .chat-container {
   display: flex;
-  align-items: flex-start; /* 顶部对齐 */
+  align-items: flex-start;
+  /* 顶部对齐 */
   padding: 10px;
 }
 
 .chat-container[data-sender='user'] {
-  justify-content: flex-end; /* 用户消息靠右 */
+  justify-content: flex-end;
+  /* 用户消息靠右 */
 }
 
 .chat-container[data-sender='AI'] {
-  justify-content: flex-start; /* AI消息靠左 */
+  justify-content: flex-start;
+  /* AI消息靠左 */
 }
 
 .chat-container l-card {
-  max-width: 90%; /* 限制消息宽度 */
-  padding: 10rpx; /* 增加内边距，模仿气泡 */
-  background-color: #a5d1e9; /* AI消息默认背景色 */
-  border-radius: 10rpx; /* 圆角 */
-  color: #333333;  
+  max-width: 90%;
+  /* 限制消息宽度 */
+  padding: 10rpx;
+  /* 增加内边距，模仿气泡 */
+  background-color: #a5d1e9;
+  /* AI消息默认背景色 */
+  border-radius: 10rpx;
+  /* 圆角 */
+  color: #333333;
 }
 
 .chat-container[data-sender='user'] l-card {
-  background-color: #ffffff; /* 用户消息背景色 */
+  background-color: #ffffff;
+  /* 用户消息背景色 */
   /* margin-left: 20%; 左侧留出空间 */
 }
 
@@ -61,4 +75,11 @@
   gap: 20rpx;
   margin-right: 10%;
   margin-top: 20rpx;
+}
+
+/* 语音播放图标按钮 */
+.audioplay {
+  display: flex;
+  margin-top: 10rpx;
+  justify-content: flex-end;
 }

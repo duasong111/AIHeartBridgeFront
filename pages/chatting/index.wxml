@@ -8,12 +8,9 @@
   <view class="chat-container" wx:for="{{chatHistory}}" wx:key="index" wx:for-item="message" data-sender="{{message.sender}}">
     <l-card type="primary" plaintext="{{true}}" title="">
       <view>{{message.content}}</view>
-
       <!-- 只显示 AI 消息时的语音播放按钮 -->
-      <view wx:if="{{message.sender === 'AI'}}">
-        <t-button theme="danger" size="small" variant="outline" shape="round" bindtap="vedioPlay" data-text="{{message.content}}">
-          语音播放
-        </t-button>
+      <view class="audioplay" wx:if="{{message.sender === 'AI'}}">
+        <t-icon name="play-circle-stroke" size="48rpx" data-name="{{message.content}}" bind:click="vedioPlay" />
       </view>
     </l-card>
   </view>
@@ -24,7 +21,9 @@
         <view class="button-container">
           <t-button theme="primary" size="small" variant="outline" shape="round" bindtap="selectModel">版本切换</t-button>
           <t-button theme="danger" size="small" variant="outline" shape="round" bindtap="sendMessage">发送对话</t-button>
-          <t-button theme="warning" size="small" variant="outline" shape="round" bindtap="vedioPlay">播放</t-button>
+          <l-button shape="semicircle" plain="{{true}}" size="mini" bind:touchstart="startRecord" bind:touchend="stopRecord">
+            {{recording ? '松开结束录音' : '按住录音'}}
+          </l-button>
         </view>
       </l-card>
     </view>

@@ -1,0 +1,19 @@
+<view class="container">
+  <!-- 录音按钮 -->
+  <button class="record-btn" bind:touchstart="startRecord" bind:touchend="stopRecord">
+    {{ recording ? '松开结束录音' : '按住录音' }}
+  </button>
+
+  <!-- 上传按钮 -->
+  <button class="upload-btn" bind:tap="uploadAudio" wx:if="{{audioPath}}">上传音频并转换</button>
+
+  <!-- 显示转录结果 -->
+  <view class="result" wx:if="{{transcribedText}}">
+    <text>转录结果：{{transcribedText}}</text>
+  </view>
+
+  <!-- 错误信息 -->
+  <view class="error" wx:if="{{errorMsg}}">
+    <text>{{errorMsg}}</text>
+  </view>
+</view>
