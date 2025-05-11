@@ -9,13 +9,20 @@
 	</l-card>
 </view> -->
 
-<view wx:for="{{getPsychometricsList}}" wx:key="index" class='swiper_con' >
-	<MyCard type="primary" plaintext="{{true}}" title="本次得分为：{{item.HealthScore}}">
-		<view class="returnContent">
-			{{item.TopicSummary}}
-		</view>
-		<view class="card_time ">
-			<icon class="iconfont icon-shijian"></icon>{{item.ReturnTime}}
-		</view>
-	</MyCard>
-</view>
+<block wx:if="{{getPsychometricsList.length > 0}}">
+  <view wx:for="{{getPsychometricsList}}" wx:key="index" class='swiper_con'>
+    <MyCard type="primary" plaintext="{{true}}" title="本次得分为：{{item.HealthScore}}">
+      <view class="returnContent">
+        {{item.TopicSummary}}
+      </view>
+      <view class="card_time">
+        <icon class="iconfont icon-shijian"></icon>{{item.ReturnTime}}
+      </view>
+    </MyCard>
+  </view>
+</block>
+<block wx:else>
+  <view class="no-data">
+    该用户没有进行测评
+  </view>
+</block>

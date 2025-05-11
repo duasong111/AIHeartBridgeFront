@@ -1,0 +1,21 @@
+<view class="container">
+
+	<l-card type="primary" plaintext="{{true}}" title="当前用户信息">
+	
+	</l-card>
+
+
+  <l-card type="primary" plaintext="{{true}}" title="🍍个人信息修改">
+		<l-input label="姓名" type="text" placeholder="请输入姓名" />
+		<l-input label="邮箱" type="text" placeholder="请输入邮箱" />
+		<l-input label="城市" type="text" placeholder="请输入城市名" />
+		<l-input label="地址" type="text" placeholder="请输入地址" />
+		<l-input label="手机号" type="number" placeholder="请输入手机号" />
+		<l-input label="个性签名" type="text" placeholder="请输入数字" />
+    </l-card>
+		<view class="bottom-btm">
+			<l-button type="default">提交</l-button>
+			<l-button type="warning">重置</l-button>
+		</view>
+		
+</view>

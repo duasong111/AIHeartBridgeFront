@@ -1,3 +1,21 @@
 {
-  "usingComponents": {}
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTitleText": "我的信息",
+  "externalClasses": "custom-class",
+  "component": true,
+  "usingComponents": {
+    "l-button":"../../miniprogram_npm/lin-ui/button/index",
+    "l-index-list":"../../miniprogram_npm/lin-ui/index-list/index",
+    "l-index-anchor":"../../miniprogram_npm/lin-ui/index-anchor/index",
+    "l-card":"../../miniprogram_npm/lin-ui/card/index",
+    "l-search-bar":"/miniprogram_npm/lin-ui/search-bar/index",
+    "l-popup": "/miniprogram_npm/lin-ui/popup/index",
+    "l-input":"/miniprogram_npm/lin-ui/input/index",
+    "MyCard":"../../miniprogram_npm/MyComponents/MyCard/index",
+    
+    
+    "t-button": "/miniprogram_npm/tdesign-miniprogram/button/button",
+    "t-input": "/miniprogram_npm/tdesign-miniprogram/input/input",
+    "t-icon": "/miniprogram_npm/tdesign-miniprogram/icon/icon"
+  }
 }

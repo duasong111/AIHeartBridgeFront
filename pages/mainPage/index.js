@@ -56,7 +56,7 @@ Page({
   },
   //发送请求获取壁纸
   getimages() {
-    var currentBingDays = this.data.currentBingDays
+    var currentBingDays = this.data.currentBingDays;
     var url = `https://cn.bing.com/HPImageArchive.aspx?format=js&idx=${currentBingDays}&n=3&mkt=zh-CN`;
     wx.request({
       url: url,
@@ -65,19 +65,29 @@ Page({
         'content-type': 'application/json'
       },
       success: (res) => {
-        this.setData({
-          imagsult: res.data.images //后边是数组名称
-        })
+        if (res.statusCode === 200 && res.data && res.data.images) {
+          console.log("传输的图片进行展示")
+          this.setData({
+            imagsult: res.data.images
+          });
+        } else {
+          console.error('响应数据异常:', res);
+          wx.showToast({
+            title: '数据解析失败',
+            icon: 'none',
+            duration: 2000
+          });
+        }
       },
-      fail: () => {
+      fail: (err) => {
+        console.error('请求失败:', err);
         wx.showToast({
-          title: '请求超时，请检查网络或与管理员联系',
-          icon: 'fail',
-          duration: 2000 //持续的时间
-
-        })
+          title: '请求失败，请检查网络',
+          icon: 'none',
+          duration: 2000
+        });
       }
-    })
+    });
   },
   //点击后生成任意一张图片 先进行保留
   previousPages: function () {

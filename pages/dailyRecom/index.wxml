@@ -1,5 +1,11 @@
 <view class="searchbar">
-  <l-search-bar placeholder="搜索项目名" shape="circle" show-cancel="{{true}}" />
+  <l-search-bar 
+    placeholder="搜索项目名" 
+    bindinput="onInput" 
+    bind:linfocus="onFocus" 
+    shape="circle" 
+    show-cancel="{{true}}" 
+  />
 </view>
 <view class="container">
   <!-- 左侧栏 -->
@@ -20,7 +26,7 @@
         </l-card>
       </view>
     </view>
-    <view wx:else>暂无项目，展示一个空的图片，然后说明：该领域可能还没有项目供对外展示哦</view>
+    <view wx:else>暂无该文章哦。等待有关人员去进行更新哦</view>
   </view>
 </view>
 <l-popup show="{{showPoP}}" content-align="bottom">

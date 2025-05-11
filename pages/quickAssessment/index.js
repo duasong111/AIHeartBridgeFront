@@ -181,6 +181,7 @@ Page({
             },
             success: function (res) {
                 let data = typeof res.data === 'string' ? JSON.parse(res.data) : res.data;
+                console.log("打印分析后的结果",data)
                 // 关闭加载提示
                 wx.hideLoading();
                 // 设置AI分析结果并显示对话框

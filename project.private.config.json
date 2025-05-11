@@ -9,8 +9,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "AI聊天",
-          "pathName": "pages/chatting/index",
+          "name": "修改个人信息",
+          "pathName": "pages/register/index",
           "query": "",
           "launchMode": "default",
           "scene": null

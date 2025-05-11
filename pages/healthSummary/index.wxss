@@ -13,3 +13,9 @@
 	color: #93b5cf;
 }
 /*------------------------------------*/
+.no-data {
+  text-align: center;
+  padding: 20rpx;
+  color: #666;
+  font-size: 28rpx;
+}

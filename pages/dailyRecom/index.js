@@ -6,7 +6,9 @@ Page({
     curIndex: 0,
     showPoP: false,
     selectedItem: null,
-    serverUrl:''
+    serverUrl:'',
+    //实现检索
+    inputValue:""
   },
   onLoad: function() {
         //引入全局路由
@@ -41,6 +43,22 @@ Page({
       }
     });
   },
+
+  //获取输入的内容
+  onInput(e) {
+    console.log("输入的内容:", e.detail.value);
+    this.setData({
+      inputValue: e.detail.value
+    });
+  },
+
+  // 可选：处理聚焦事件
+  onFocus(e) {
+    // console.log("输入的内容:", e.detail.value);
+
+ 
+  },
+
   switchRightTab: function(e) {
     let id = e.currentTarget.dataset.id; // 使用 currentTarget 更准确
     let index = parseInt(e.currentTarget.dataset.leftIndex);

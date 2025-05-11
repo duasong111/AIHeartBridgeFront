@@ -12,9 +12,8 @@
     "pages/healthSummary/index",
     "pages/noticeCenter/index",
     "pages/myMessage/index",
-    "pages/projectDevelopment/index",
-    "pages/SpeechText/index"
-
+    "pages/modifySeleInform/index",
+    "pages/projectDevelopment/index"
 
   ],
   "window": {

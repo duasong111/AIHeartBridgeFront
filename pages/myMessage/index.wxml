@@ -1,2 +1,23 @@
-<!--pages/myMessage/index.wxml-->
-<text>pages/myMessage/index.wxml</text>
+<view class="container">
+
+<l-card type="primary" plaintext="{{true}}" title="当前用户信息">
+
+</l-card>
+
+
+<l-card type="primary" plaintext="{{true}}" title="🍍个人信息修改">
+	<form bindsubmit="submitForm">
+  <l-input label="姓名" type="text" placeholder="请输入姓名" value="{{user}}" bind:lininput="onInputChange"  data-input-type="name" />
+  <l-input label="邮箱" type="text" placeholder="请输入邮箱" value="{{email}}"bind:lininput="onInputChange" data-input-type="email" />
+  <l-input label="城市" type="text" placeholder="请输入城市名" value="{{Country}}"bind:lininput="onInputChange" data-input-type="Country" />
+  <l-input label="地址" type="text" placeholder="请输入地址" value="{{Address}}" bind:lininput="onInputChange" ddata-input-type="Address" />
+  <l-input label="手机号" type="number" placeholder="请输入手机号" value="{{Phone}}" bind:lininput="onInputChange" data-input-type="Phone" />
+  <l-input label="个性签名" type="text" placeholder="请输入个性签名" value="{{signature}}" bind:lininput="onInputChange" data-input-type="signature" />
+</form>
+</l-card>
+	<view class="bottom-btm">
+		<l-button bindtap="submitChanges" type="default">提交</l-button>
+		<l-button type="warning">重置</l-button>
+	</view>
+	
+</view>
