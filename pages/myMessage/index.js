@@ -46,6 +46,7 @@ Page({
         'Content-Type': 'application/json'
       },
       success: function (res) {
+        console.log("返回数据",res.data.data[0])
         const userData = res.data.data[0] || {};
         that.setData({
           user: userData.user || '',
@@ -67,6 +68,14 @@ Page({
     // 发送网络请求或进行其他处理
     console.log(formData);
   },
+  onInputChange:function(e){
+    let that = this;
+    let inputValue = e.detail.value;             // 获取输入的值
+    let inputField = e.target.dataset.inputType; // 获取自定义属性值
+    this.setData({
+      [inputField]: inputValue  // 将输入的值赋给对应的数据字段
+    });
+   },
 
   // 提交修改
   submitChanges: function (e) {
@@ -79,14 +88,21 @@ Page({
     let Phone = that.data.Phone ;
     let signatur = that.data.signatur;
 
-    console.log("显示手机号",Phone)
 
 
     // 发送请求到后端
     wx.request({
-      // url: `${that.data.serverUrl}/info/update-userinform/`,
+      url: `${that.data.serverUrl}/info/info-updateuserinform/`,
       method: 'POST',
-      data: that.data.userInformData,
+      data: {
+        "user": user,
+        "email": email,
+        "Country": Country,
+        "Address": Address,
+        "Account": Account,
+        "Phone": Phone,
+        "signature": signatur
+      },
       header: {
         'Content-Type': 'application/json'
       },
