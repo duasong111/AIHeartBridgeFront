@@ -18,7 +18,6 @@ Page({
     const app = getApp();
     const netServe = app.globalData.netServe;
     const account = app.globalData.account;
-    console.log("展示账户信息",account)
     this.setData({
       serverUrl: netServe,
       currentAccount: account
