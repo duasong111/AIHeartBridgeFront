@@ -65,7 +65,7 @@ Page({
 
   // 选择模型
   selectModel() {
-    const models = ['Spark Lite', 'Spark4.0 Ultra'];
+    const models = ['Spark Lite', 'Spark4.0 Ultra','新的对话（清空存储）'];
     wx.showActionSheet({
       itemList: models,
       success: (res) => {

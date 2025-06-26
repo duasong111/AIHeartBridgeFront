@@ -5,6 +5,15 @@
     <l-notice-bar  front-icon-name="notification"  show="{{bulletinBoard.is_show}}" close="{{true}}">{{bulletinBoard.content}}</l-notice-bar>
 </view>
   <!-- 轮播图 -->
+  <!-- <view class="carouselChart">
+    <swiper autoplay="{{true}}" circular="{{true}}" indicator-dots="{{true}}" interval="3000" indicator-color="#afafb0" indicator-active-color="#ffffff">
+      <swiper-item wx:for="{{imagsult}}" wx:key="index" style="width:{{ images[index].width }}rpx; height:{{ images[index].height }}rpx; justify-content:center;align-items:center;display: flex;">
+        <image mode="widthFix" src="https://cn.bing.com/{{item.url}}" />
+        <view class="content">{{item.copyright}}</view>
+      </swiper-item>
+    </swiper>
+  </view> -->
+
   <view class="carouselChart">
     <swiper autoplay="{{true}}" circular="{{true}}" indicator-dots="{{true}}" interval="3000" indicator-color="#afafb0" indicator-active-color="#ffffff">
       <swiper-item wx:for="{{imagsult}}" wx:key="index" style="width:{{ images[index].width }}rpx; height:{{ images[index].height }}rpx; justify-content:center;align-items:center;display: flex;">

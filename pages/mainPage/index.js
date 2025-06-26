@@ -50,6 +50,7 @@ Page({
       width: viewWidth,
       height: viewHeight,
     }
+    console.log("展示image的值",image)
     this.setData({
       images: image
     })
@@ -66,7 +67,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200 && res.data && res.data.images) {
-          console.log("传输的图片进行展示")
+          console.log("传输的图片进行展示",res.data)
           this.setData({
             imagsult: res.data.images
           });

@@ -4,7 +4,7 @@ const isDebug = false
 
 // 服务器地址
 const serverUrls = {
-  "localServerUrl": "http://127.0.0.1:8000",
+  "localServerUrl": "http://localhost:8000",
 }
 
 module.exports = {
